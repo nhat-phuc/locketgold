@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ═══ TITLE ═══ -->
+    <title>Nâng Cấp Locket Gold VIP | Tự Động - Nhanh 5 Giây</title>
+
+    <!-- ═══ META ═══ -->
+    <meta name="description" content="Nâng cấp Locket Gold VIP tự động chỉ trong 5 giây. Không cần iCloud, không cần mật khẩu, không cần Shadowrocket.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Locket Gold">
+    <meta name="theme-color" content="#A78BFA">
+
+    <!-- ═══ FAVICON ═══ -->
+    <link rel="icon" type="image/png" href="/img/logo/icon.jpg">
+    <link rel="shortcut icon" href="/img/logo/icon.jpg">
+
+    <!-- ═══ FONTS ═══ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ═══ STYLES ═══ -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --purple-300: #c4b5fd;
+            --purple-400: #a78bfa;
+            --purple-500: #8b5cf6;
+            --purple-600: #7c3aed;
+            --purple-700: #6d28d9;
+            --bg-dark: #07070f;
+            --bg-card: rgba(18, 18, 32, 0.6);
+            --border-subtle: rgba(167, 139, 250, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.65);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --text-dim: rgba(255, 255, 255, 0.25);
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --error: #f87171;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        html,
+        body {
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, 'Inter', 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* ═══ BACKGROUND ═══ */
+        
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.55;
+            will-change: transform;
+        }
+        
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.6), transparent 70%);
+            top: -250px;
+            left: -200px;
+            animation: orbFloat1 24s ease-in-out infinite;
+        }
+        
+        .bg-orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.5), transparent 70%);
+            bottom: -200px;
+            right: -150px;
+            animation: orbFloat2 28s ease-in-out infinite;
+        }
+        
+        .bg-orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.35), transparent 70%);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbFloat3 32s ease-in-out infinite;
+        }
+        
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(167, 139, 250, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(167, 139, 250, 0.035) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%);
+        }
+        
+        .bg-noise {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        /* ═══ WRAPPER ═══ */
+        
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 24px 80px;
+        }
+        /* ═══ TOPBAR ═══ */
+        
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: rgba(18, 18, 32, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            margin-bottom: 48px;
+            animation: slideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.35), 0 0 0 1px rgba(167, 139, 250, 0.2);
+        }
+        
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.4px;
+        }
+        
+        .brand-name span {
+            background: linear-gradient(135deg, #c4b5fd, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .user-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px 6px 6px;
+            background: rgba(167, 139, 250, 0.06);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            border-radius: 999px;
+        }
+        
+        .user-chip img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid rgba(167, 139, 250, 0.35);
+        }
+        
+        .user-chip span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .logout-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: rgba(248, 113, 113, 0.08);
+            border: 1px solid rgba(248, 113, 113, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(248, 113, 113, 0.15);
+            border-color: rgba(248, 113, 113, 0.3);
+        }
+        
+        .logout-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--error);
+        }
+        /* ═══ HERO ═══ */
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 56px;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.1s;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.18);
+            border-radius: 999px;
+            margin-bottom: 22px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--purple-300);
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -2px;
+            line-height: 1.08;
+            margin-bottom: 18px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, #e9d5ff 0%, #c4b5fd 30%, #a78bfa 60%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.6), transparent);
+            border-radius: 3px;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c4b5fd, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 4px;
+            letter-spacing: 0.3px;
+        }
+        
+        .hero-stat-divider {
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(167, 139, 250, 0.2), transparent);
+        }
+        /* ═══ MAIN GRID ═══ */
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+        /* ═══ CARD ═══ */
+        
+        .card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 28px;
+            padding: 32px;
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.02) inset, 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+            overflow: hidden;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.2s;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 28px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.5), rgba(99, 102, 241, 0.1) 35%, transparent 60%, rgba(236, 72, 153, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.7), transparent);
+            pointer-events: none;
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.4px;
+        }
+        
+        .card-title-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.15);
+        }
+        
+        .card-title-icon svg {
+            width: 17px;
+            height: 17px;
+            color: var(--purple-300);
+        }
+        /* ═══ PLAN LIST ═══ */
+        
+        .plan-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        
+        .plan {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1.5px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        
+        .plan::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+        
+        .plan:hover {
+            border-color: rgba(167, 139, 250, 0.3);
+            transform: translateX(6px);
+            background: rgba(167, 139, 250, 0.03);
+        }
+        
+        .plan:hover::before {
+            opacity: 1;
+        }
+        
+        .plan.selected {
+            background: rgba(167, 139, 250, 0.08);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 12px 40px rgba(167, 139, 250, 0.2), 0 0 0 1px rgba(167, 139, 250, 0.15) inset;
+            transform: translateX(6px);
+        }
+        
+        .plan.selected::before {
+            opacity: 1;
+        }
+        
+        .plan.selected::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 3px;
+            background: linear-gradient(180deg, transparent, var(--purple-400), transparent);
+            border-radius: 0 3px 3px 0;
+            box-shadow: 0 0 12px var(--purple-400);
+        }
+        
+        .plan-radio {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .plan.selected .plan-radio {
+            border-color: var(--purple-400);
+            background: var(--purple-400);
+            box-shadow: 0 0 16px rgba(167, 139, 250, 0.5);
+        }
+        
+        .plan-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .plan.selected .plan-radio::after {
+            transform: scale(1);
+        }
+        
+        .plan-info {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .plan-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.2px;
+        }
+        
+        .plan-tag {
+            font-size: 9.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .plan-tag.hot {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1f1f1f;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+        }
+        
+        .plan-tag.best {
+            background: linear-gradient(135deg, #f472b6, #ec4899);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(236, 72, 153, 0.4);
+        }
+        
+        .plan-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .plan-price {
+            text-align: right;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .plan-price-current {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--purple-300);
+            letter-spacing: -0.4px;
+        }
+        
+        .plan-price-old {
+            font-size: 11.5px;
+            color: var(--text-dim);
+            text-decoration: line-through;
+            font-weight: 500;
+            margin-top: 1px;
+        }
+        /* ═══ FEATURES ═══ */
+        
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-bottom: 28px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        .feature-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(74, 222, 128, 0.12);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        
+        .feature-check svg {
+            width: 11px;
+            height: 11px;
+            color: var(--success);
+        }
+        
+        .feature strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        /* ═══ PAYMENT METHODS ═══ */
+        
+        .payment-methods {
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .payment-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .payment-logos {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-logo {
+            padding: 9px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 11px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: default;
+        }
+        
+        .payment-logo:hover {
+            background: rgba(167, 139, 250, 0.08);
+            border-color: rgba(167, 139, 250, 0.25);
+            color: var(--purple-300);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(167, 139, 250, 0.15);
+        }
+        /* ═══ SUMMARY CARD ═══ */
+        
+        .summary-card {
+            position: sticky;
+            top: 24px;
+            animation-delay: 0.3s;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 0;
+            font-size: 13.5px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+        
+        .summary-row:last-of-type {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: right;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0 4px;
+            margin-top: 10px;
+            border-top: 1.5px solid rgba(167, 139, 250, 0.25);
+        }
+        
+        .summary-total-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .summary-total-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e9d5ff, #a78bfa 50%, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.8px;
+            line-height: 1.1;
+        }
+        /* ═══ CTA BUTTON ═══ */
+        
+        .cta-btn {
+            position: relative;
+            width: 100%;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #6d28d9 100%);
+            border: none;
+            border-radius: 18px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 12px 40px rgba(167, 139, 250, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 22px;
+        }
+        
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .cta-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(167, 139, 250, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        }
+        
+        .cta-btn:hover:not(:disabled)::before {
+            left: 100%;
+        }
+        
+        .cta-btn:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+        
+        .cta-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .cta-btn svg {
+            width: 19px;
+            height: 19px;
+        }
+        
+        .cta-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 14px;
+            line-height: 1.5;
+        }
+        
+        .cta-note strong {
+            color: var(--purple-300);
+            font-weight: 600;
+        }
+        /* ═══ STATUS BOX ═══ */
+        
+        .status-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px 17px;
+            background: rgba(251, 191, 36, 0.06);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            border-radius: 16px;
+            margin-top: 22px;
+        }
+        
+        .status-box svg {
+            width: 16px;
+            height: 16px;
+            color: var(--warning);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        
+        .status-box p {
+            font-size: 12px;
+            color: rgba(251, 191, 36, 0.9);
+            line-height: 1.55;
+            margin: 0;
+        }
+        /* ═══ BENEFITS ═══ */
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.4s;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px;
+            background: rgba(18, 18, 32, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .benefit:hover {
+            border-color: rgba(167, 139, 250, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        }
+        
+        .benefit-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.18), rgba(124, 58, 237, 0.08));
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .benefit-icon svg {
+            width: 19px;
+            height: 19px;
+            color: var(--purple-300);
+        }
+        
+        .benefit-text h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            letter-spacing: -0.2px;
+        }
+        
+        .benefit-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+        /* ═══ MODAL ═══ */
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            background: rgba(20, 20, 36, 0.95);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 28px;
+            padding: 40px 32px 32px;
+            text-align: center;
+            transform: scale(0.9) translateY(24px);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+        
+        .modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.6), transparent);
+        }
+        
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+        
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.1);
+            border: 2px solid rgba(74, 222, 128, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.15s;
+            box-shadow: 0 0 40px rgba(74, 222, 128, 0.2);
+        }
+        
+        .modal-icon svg {
+            width: 36px;
+            height: 36px;
+            color: var(--success);
+        }
+        
+        .modal h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .modal p {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 15px 24px;
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 36px rgba(167, 139, 250, 0.4);
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 48px rgba(167, 139, 250, 0.55);
+        }
+        /* ═══ SPINNER ═══ */
+        
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        /* ═══ ANIMATIONS ═══ */
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(28px);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+        
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes orbFloat1 {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(60px, -40px) scale(1.15);
+            }
+            66% {
+                transform: translate(-40px, 30px) scale(0.9);
+            }
+        }
+        
+        @keyframes orbFloat2 {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(-50px, 40px) scale(0.9);
+            }
+            66% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+        }
+        
+        @keyframes orbFloat3 {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+        
+        @keyframes dotPulse {
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 10px var(--success);
+            }
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 20px var(--success);
+            }
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes shimmer {
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scaleX(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+        /* ═══ RESPONSIVE ═══ */
+        
+        @media (max-width: 960px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .summary-card {
+                position: static;
+            }
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .wrapper {
+                padding: 16px 16px 60px;
+            }
+            .topbar {
+                padding: 12px 16px;
+                margin-bottom: 32px;
+            }
+            .brand-name {
+                font-size: 15px;
+            }
+            .user-chip span {
+                display: none;
+            }
+            .user-chip {
+                padding: 6px;
+            }
+            .hero {
+                margin-bottom: 36px;
+            }
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: -1.2px;
+            }
+            .hero p {
+                font-size: 14.5px;
+            }
+            .hero-stats {
+                gap: 24px;
+            }
+            .hero-stat-value {
+                font-size: 22px;
+            }
+            .card {
+                padding: 24px 20px;
+                border-radius: 22px;
+            }
+            .plan {
+                padding: 15px 16px;
+                gap: 12px;
+            }
+            .plan-name {
+                font-size: 14px;
+            }
+            .plan-price-current {
+                font-size: 15px;
+            }
+            .summary-total-value {
+                font-size: 22px;
+            }
+            .benefit {
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            .plan-tag {
+                display: none;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ BACKGROUND ═══ -->
+    <div class="bg-canvas">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-noise"></div>
+    </div>
+
+    <div class="wrapper">
+
+        <!-- ═══ TOPBAR ═══ -->
+        <div class="topbar">
+            <div class="brand">
+                <div class="brand-logo">
+                    <img src="/img/logo/icon.jpg" alt="Locket Gold">
+                </div>
+                <div class="brand-name">Locket <span>Gold</span></div>
+            </div>
+            <div class="topbar-right">
+                <div class="user-chip">
+                    <img id="chipAvatar" src="" alt="User">
+                    <span id="chipName">—</span>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()" title="Đăng xuất">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ═══ HERO ═══ -->
+        <div class="hero">
+            <div class="hero-badge">
+                <span class="dot"></span> Hệ thống tự động 24/7
+            </div>
+            <h1>Nâng Cấp <span>Locket Gold VIP</span></h1>
+            <p>Chọn gói phù hợp và nâng cấp ngay. Hệ thống xử lý tự động, hoàn thành chỉ trong vòng 5 giây.</p>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">50K+</div>
+                    <div class="hero-stat-label">Khách hàng</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">4.9/5</div>
+                    <div class="hero-stat-label">Đánh giá</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">5s</div>
+                    <div class="hero-stat-label">Xử lý</div>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">24/7</div>
+                    <div class="hero-stat-label">Hỗ trợ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ MAIN GRID ═══ -->
+        <div class="main-grid">
+
+            <!-- LEFT: PLAN SELECTOR -->
+            <div class="card">
+                <div class="card-title">
+                    <div class="card-title-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    Chọn gói nâng cấp
+                </div>
+
+                <div class="plan-list">
+                    <div class="plan" data-plan="1month" data-price="49000" onclick="selectPlan(this)">
+                        <div class="plan-radio"></div>
+                        <div class="plan-info">
+                            <div class="plan-name">Locket Gold VIP 1 Tháng</div>
+                            <div class="plan-desc">Dùng thử trải nghiệm VIP</div>
+                        </div>
+                        <div class="plan-price">
+                            <div class="plan-price-current">49.000đ</div>
+                            <div class="plan-price-old">99.000đ</div>
+                        </div>
+                    </div>
+
+                    <div class="plan selected" data-plan="6months" data-price="199000" onclick="selectPlan(this)">
+                        <div class="plan-radio"></div>
+                        <div class="plan-info">
+                            <div class="plan-name">Locket Gold VIP 6 Tháng <span class="plan-tag hot">HOT</span></div>
+                            <div class="plan-desc">Tiết kiệm 40% so với gói tháng</div>
+                        </div>
+                        <div class="plan-price">
+                            <div class="plan-price-current">199.000đ</div>
+                            <div class="plan-price-old">399.000đ</div>
+                        </div>
+                    </div>
+
+                    <div class="plan" data-plan="12months" data-price="349000" onclick="selectPlan(this)">
+                        <div class="plan-radio"></div>
+                        <div class="plan-info">
+                            <div class="plan-name">Locket Gold VIP 12 Tháng <span class="plan-tag best">BEST</span></div>
+                            <div class="plan-desc">Tiết kiệm 60% - Rẻ nhất</div>
+                        </div>
+                        <div class="plan-price">
+                            <div class="plan-price-current">349.000đ</div>
+                            <div class="plan-price-old">699.000đ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div>Nâng cấp <strong>tự động 100%</strong>, không cần thao tác thủ công</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div>Hoàn thành chỉ trong <strong>5 giây</strong>, không cần chờ đợi</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div>Không cần iCloud, <strong>không cần mật khẩu</strong>, không cần Shadowrocket</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div>Bảo hành <strong>1 đổi 1</strong> trong suốt thời gian sử dụng</div>
+                    </div>
+                </div>
+
+                <!-- Payment methods -->
+                <div class="payment-methods">
+                    <div class="payment-label">Thanh toán an toàn qua</div>
+                    <div class="payment-logos">
+                        <div class="payment-logo">MoMo</div>
+                        <div class="payment-logo">ZaloPay</div>
+                        <div class="payment-logo">Banking</div>
+                        <div class="payment-logo">VietQR</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: ORDER SUMMARY -->
+            <div class="card summary-card">
+                <div class="card-title">
+                    <div class="card-title-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    Đơn hàng của bạn
+                </div>
+
+                <div class="summary-row">
+                    <span class="summary-label">Tài khoản</span>
+                    <span class="summary-value" id="summaryEmail">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Gói nâng cấp</span>
+                    <span class="summary-value" id="summaryPlan">6 Tháng</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Thời gian xử lý</span>
+                    <span class="summary-value">~ 5 giây</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Bảo hành</span>
+                    <span class="summary-value">1 đổi 1</span>
+                </div>
+
+                <div class="summary-total">
+                    <span class="summary-total-label">Tổng cộng</span>
+                    <span class="summary-total-value" id="summaryTotal">199.000đ</span>
+                </div>
+
+                <button class="cta-btn" id="payBtn" onclick="handlePayment()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                        <line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                    <span id="payBtnText">Thanh toán ngay</span>
+                </button>
+
+                <div class="cta-note">
+                    Thanh toán an toàn · <strong>Hoàn tiền 100%</strong> nếu lỗi
+                </div>
+
+                <div class="status-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <p>Hệ thống đang hoạt động bình thường. Đơn hàng được xử lý tự động 24/7.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ BENEFITS ═══ -->
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="benefit-text">
+                    <h4>Bảo mật tuyệt đối</h4>
+                    <p>Không lưu mật khẩu, an toàn 100%</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <div class="benefit-text">
+                    <h4>Xử lý siêu nhanh</h4>
+                    <p>Hoàn thành chỉ trong 5 giây</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                    </svg>
+                </div>
+                <div class="benefit-text">
+                    <h4>Hỗ trợ 24/7</h4>
+                    <p>Luôn sẵn sàng giải đáp thắc mắc</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SUCCESS MODAL ═══ -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+            <h3>Đặt hàng thành công!</h3>
+            <p>Đơn hàng của bạn đã được ghi nhận. Vui lòng chuyển khoản theo hướng dẫn để hoàn tất nâng cấp Locket Gold VIP.</p>
+            <button class="modal-btn" onclick="closeModal()">Đã hiểu</button>
+        </div>
+    </div>
+
+    <!-- ═══ JAVASCRIPT ═══ -->
+    <script>
+        // ═══ STATE ═══
+        let currentPlan = {
+            id: '6months',
+            name: '6 Tháng',
+            price: 199000
+        };
+        let currentUser = null;
+
+        // ═══ FORMAT PRICE ═══
+        function formatPrice(price) {
+            return price.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // ═══ KIỂM TRA ĐĂNG NHẬP ═══
+        (function checkAuth() {
+            try {
+                const stored = sessionStorage.getItem('locket_user');
+                if (!stored) {
+                    // Chưa đăng nhập → chuyển về trang xác thực
+                    window.location.href = '/google-auth.html';
+                    return;
+                }
+
+                currentUser = JSON.parse(stored);
+
+                // Hiển thị thông tin user
+                document.getElementById('chipAvatar').src = currentUser.picture || 'https://ui-avatars.com/api/?name=User&background=7c3aed&color=fff&size=100';
+                document.getElementById('chipName').textContent = currentUser.name || 'Khách';
+                document.getElementById('summaryEmail').textContent = currentUser.email || 'Chưa xác thực';
+
+                console.log('✅ Đã xác thực:', currentUser.email);
+            } catch (e) {
+                console.error('Lỗi đọc session:', e);
+                window.location.href = '/google-auth.html';
+            }
+        })();
+
+        // ═══ CHỌN GÓI ═══
+        function selectPlan(el) {
+            document.querySelectorAll('.plan').forEach(function(p) {
+                p.classList.remove('selected');
+            });
+            el.classList.add('selected');
+
+            const planId = el.getAttribute('data-plan');
+            const price = parseInt(el.getAttribute('data-price'));
+
+            const planNames = {
+                '1month': '1 Tháng',
+                '6months': '6 Tháng',
+                '12months': '12 Tháng'
+            };
+
+            currentPlan = {
+                id: planId,
+                name: planNames[planId],
+                price: price
+            };
+
+            document.getElementById('summaryPlan').textContent = currentPlan.name;
+            document.getElementById('summaryTotal').textContent = formatPrice(currentPlan.price);
+        }
+
+        // ═══ XỬ LÝ THANH TOÁN ═══
+        function handlePayment() {
+            if (!currentUser) {
+                alert('Vui lòng đăng nhập trước!');
+                window.location.href = '/google-auth.html';
+                return;
+            }
+
+            const btn = document.getElementById('payBtn');
+            const btnText = document.getElementById('payBtnText');
+            const icon = btn.querySelector('svg');
+
+            btn.disabled = true;
+            icon.style.display = 'none';
+            btnText.textContent = 'Đang xử lý...';
+            btn.insertAdjacentHTML('afterbegin', '<span class="spinner"></span>');
+
+            // Tạo đơn hàng
+            const order = {
+                user: {
+                    name: currentUser.name,
+                    email: currentUser.email,
+                    googleId: currentUser.googleId
+                },
+                plan: currentPlan,
+                timestamp: Date.now(),
+                status: 'pending',
+                orderId: 'LG' + Date.now()
+            };
+
+            // ═══ GỬI LÊN SERVER (nếu có backend) ═══
+            // fetch('/api/create-order', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(order)
+            // })
+            // .then(res => res.json())
+            // .then(data => {
+            //     if (data.paymentUrl) {
+            //         window.location.href = data.paymentUrl; // MoMo/ZaloPay
+            //     }
+            // });
+
+            // ═══ MÔ PHỎNG XỬ LÝ ═══
+            setTimeout(function() {
+                btn.disabled = false;
+                btnText.textContent = 'Thanh toán ngay';
+                const spinner = btn.querySelector('.spinner');
+                if (spinner) spinner.remove();
+                icon.style.display = '';
+
+                // Lưu đơn hàng vào session
+                try {
+                    sessionStorage.setItem('locket_order', JSON.stringify(order));
+                } catch (e) {}
+
+                console.log('📦 Đơn hàng:', order);
+
+                // Hiển thị modal thành công
+                document.getElementById('successModal').classList.add('active');
+            }, 1800);
+        }
+
+        // ═══ ĐÓNG MODAL ═══
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // ═══ ĐĂNG XUẤT ═══
+        function handleLogout() {
+            if (!confirm('Bạn có chắc muốn đăng xuất?')) return;
+
+            sessionStorage.removeItem('locket_user');
+            sessionStorage.removeItem('locket_order');
+
+            // Disable Google auto select
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.disableAutoSelect();
+            }
+
+            window.location.href = '/google-auth.html';
+        }
+    </script>
+
+</body>
+
+</html>

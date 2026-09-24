@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Thông Báo - Locket Gold</title>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0d18;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        /* ===== BACKGROUND GLOW ===== */
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(167, 139, 250, 0.08), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(244, 114, 182, 0.06), transparent 50%);
+            z-index: 0;
+            animation: bgFloat 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes bgFloat {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(-3%, 5%) rotate(3deg);
+            }
+        }
+        /* ===== HEADER ===== */
+        
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 13, 24, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header .back-btn {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        
+        .header .back-btn:hover {
+            color: #a78bfa;
+            background: rgba(167, 139, 250, 0.05);
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .badge {
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            background: #ef4444;
+            padding: 2px 10px;
+            border-radius: 20px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .header .actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .header .actions button {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .header .actions button:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+        /* ===== FILTER TABS ===== */
+        
+        .tabs {
+            display: flex;
+            gap: 4px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.01);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tabs .tab {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            background: transparent;
+            border: none;
+        }
+        
+        .tabs .tab:hover {
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .tabs .tab.active {
+            color: #fff;
+            background: rgba(167, 139, 250, 0.15);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+        
+        .tabs .tab .count {
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+        }
+        
+        .tabs .tab.active .count {
+            background: rgba(167, 139, 250, 0.2);
+            color: #a78bfa;
+        }
+        /* ===== NOTIFICATION LIST ===== */
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 80px;
+        }
+        /* ===== NOTIFICATION ITEM ===== */
+        
+        .notif-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px 18px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+            animation: notifSlide 0.4s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .notif-item:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        
+        .notif-item:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+        
+        .notif-item:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+        
+        .notif-item:nth-child(4) {
+            animation-delay: 0.20s;
+        }
+        
+        .notif-item:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+        
+        .notif-item:nth-child(6) {
+            animation-delay: 0.30s;
+        }
+        
+        .notif-item:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+        
+        .notif-item:nth-child(8) {
+            animation-delay: 0.40s;
+        }
+        
+        .notif-item:nth-child(9) {
+            animation-delay: 0.45s;
+        }
+        
+        .notif-item:nth-child(10) {
+            animation-delay: 0.50s;
+        }
+        
+        @keyframes notifSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .notif-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(167, 139, 250, 0.15);
+            transform: translateX(4px);
+        }
+        
+        .notif-item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .notif-item .icon.system {
+            background: rgba(167, 139, 250, 0.12);
+        }
+        
+        .notif-item .icon.promo {
+            background: rgba(251, 191, 36, 0.12);
+        }
+        
+        .notif-item .icon.update {
+            background: rgba(52, 211, 153, 0.12);
+        }
+        
+        .notif-item .icon.alert {
+            background: rgba(239, 68, 68, 0.12);
+        }
+        
+        .notif-item .icon.event {
+            background: rgba(244, 114, 182, 0.12);
+        }
+        
+        .notif-item .content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .notif-item .content .title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--title-color, #fff);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .notif-item .content .title .tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        
+        .notif-item .content .title .tag.system {
+            background: rgba(167, 139, 250, 0.15);
+            color: #a78bfa;
+        }
+        
+        .notif-item .content .title .tag.promo {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+        
+        .notif-item .content .title .tag.update {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+        }
+        
+        .notif-item .content .title .tag.alert {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+        
+        .notif-item .content .title .tag.event {
+            background: rgba(244, 114, 182, 0.15);
+            color: #f472b6;
+        }
+        
+        .notif-item .content .desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+        
+        .notif-item .content .desc strong {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .notif-item .content .time {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .notif-item .content .time .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #a78bfa;
+            animation: pulse 2s infinite;
+        }
+        
+        .notif-item .content .time .dot.read {
+            background: transparent;
+            animation: none;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+        
+        .notif-item .action-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(167, 139, 250, 0.1);
+            color: #a78bfa;
+            align-self: flex-start;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        
+        .notif-item .action-btn:hover {
+            background: rgba(167, 139, 250, 0.2);
+        }
+        
+        .notif-item .action-btn.primary {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            color: #fff;
+        }
+        
+        .notif-item .action-btn.primary:hover {
+            transform: scale(1.05);
+        }
+        /* ===== EMPTY STATE ===== */
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state .icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+        
+        .empty-state h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 8px;
+        }
+        
+        .empty-state p {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 14px;
+        }
+        /* ===== MODAL ===== */
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+            animation: modalFade 0.3s ease;
+        }
+        
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .modal-box {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 32px 28px;
+            max-width: 480px;
+            width: 100%;
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-box .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-box .modal-close:hover {
+            color: #fff;
+        }
+        
+        .modal-box .modal-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .modal-box h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .modal-box .modal-time {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 16px;
+        }
+        
+        .modal-box .modal-body {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .modal-box .modal-body strong {
+            color: #fff;
+        }
+        
+        .modal-box .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .modal-box .modal-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-box .modal-actions .btn-primary {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            color: #fff;
+        }
+        
+        .modal-box .modal-actions .btn-primary:hover {
+            transform: scale(1.03);
+        }
+        
+        .modal-box .modal-actions .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        
+        .modal-box .modal-actions .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        /* ===== TOAST ===== */
+        
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 14px 24px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 90%;
+        }
+        
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .toast .icon {
+            font-size: 20px;
+        }
+        /* ===== RESPONSIVE ===== */
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 16px;
+            }
+            .header h1 {
+                font-size: 17px;
+            }
+            .tabs {
+                padding: 12px 16px;
+                gap: 2px;
+            }
+            .tabs .tab {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+            .notif-item {
+                padding: 14px 14px;
+                gap: 10px;
+            }
+            .notif-item .icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .notif-item .content .title {
+                font-size: 14px;
+            }
+            .notif-item .content .desc {
+                font-size: 13px;
+            }
+            .modal-box {
+                padding: 24px 18px;
+            }
+            .modal-box .modal-actions {
+                flex-direction: column;
+            }
+            .header .actions button {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="left">
+            <a href="/trangchu.html" class="back-btn">←</a>
+            <h1>🔔 Thông Báo</h1>
+            <span class="badge" id="unreadBadge">0</span>
+        </div>
+        <div class="actions">
+            <button onclick="markAllRead()">✅ Đọc tất cả</button>
+            <button onclick="clearAll()">🗑️ Xóa</button>
+        </div>
+    </header>
+
+    <!-- ===== FILTER TABS ===== -->
+    <div class="tabs" id="filterTabs">
+        <button class="tab active" data-filter="all" onclick="filterNotifications('all')">
+            📋 Tất cả <span class="count" id="countAll">0</span>
+        </button>
+        <button class="tab" data-filter="system" onclick="filterNotifications('system')">
+            ⚙️ Hệ thống <span class="count" id="countSystem">0</span>
+        </button>
+        <button class="tab" data-filter="promo" onclick="filterNotifications('promo')">
+            🎁 Khuyến mãi <span class="count" id="countPromo">0</span>
+        </button>
+        <button class="tab" data-filter="update" onclick="filterNotifications('update')">
+            🚀 Cập nhật <span class="count" id="countUpdate">0</span>
+        </button>
+        <button class="tab" data-filter="event" onclick="filterNotifications('event')">
+            🎪 Sự kiện <span class="count" id="countEvent">0</span>
+        </button>
+        <button class="tab" data-filter="alert" onclick="filterNotifications('alert')">
+            ⚠️ Cảnh báo <span class="count" id="countAlert">0</span>
+        </button>
+    </div>
+
+    <!-- ===== NOTIFICATION LIST ===== -->
+    <div class="container" id="notifContainer">
+        <!-- Notifications sẽ được render bằng JavaScript -->
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-icon" id="modalIcon">📌</div>
+            <h3 id="modalTitle">Tiêu đề</h3>
+            <div class="modal-time" id="modalTime">1 giờ trước</div>
+            <div class="modal-body" id="modalBody">
+                Nội dung thông báo chi tiết.
+            </div>
+            <div class="modal-actions" id="modalActions">
+                <button class="btn-secondary" onclick="closeModal()">Đóng</button>
+                <button class="btn-primary" id="modalActionBtn" onclick="handleModalAction()">Xem chi tiết</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast">
+        <span class="icon">✅</span>
+        <span id="toastMessage">Đã đánh dấu đã đọc</span>
+    </div>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // ===== DATA =====
+        const notifications = [{
+            id: 1,
+            type: 'system',
+            icon: '⚙️',
+            title: 'Hệ thống đã được nâng cấp',
+            desc: 'Chúng tôi vừa cập nhật hệ thống với tốc độ xử lý nhanh hơn 200%. Trải nghiệm của bạn sẽ mượt mà hơn.',
+            time: '2 phút trước',
+            fullContent: '🚀 <strong>Nâng cấp hệ thống thành công!</strong><br><br>✅ Tốc độ xử lý tăng 200%<br>✅ Bảo mật được cải thiện<br>✅ Giao diện tối ưu hơn<br><br>Cảm ơn bạn đã đồng hành cùng Locket Gold!',
+            read: false,
+            action: 'Xem chi tiết',
+            actionLink: '/blog/he-thong-nang-cap'
+        }, {
+            id: 2,
+            type: 'promo',
+            icon: '🎁',
+            title: '🎉 Flash Sale - Giảm 50%',
+            desc: 'Săn ngay gói Locket Gold VIP với giá cực sốc chỉ 39.500đ. Số lượng có hạn!',
+            time: '15 phút trước',
+            fullContent: '🔥 <strong>FLASH SALE - GIẢM 50%</strong><br><br>🎯 Gói VIP 1 Cá Nhân: <strong>39.500đ</strong> (giá gốc 79.000đ)<br>🎯 Gói VIP 2 Cặp Đôi: <strong>74.000đ</strong> (giá gốc 148.000đ)<br><br>⏰ Thời gian: 24h tới<br>📦 Số lượng: Có hạn<br><br>🛒 Đặt ngay kẻo lỡ!',
+            read: false,
+            action: 'Mua ngay',
+            actionLink: '/dich-vu-vip.html'
+        }, {
+            id: 3,
+            type: 'update',
+            icon: '🚀',
+            title: 'Android APK v3.2 đã có',
+            desc: 'Phiên bản mới với tính năng Auto-Renew Gold không cần thao tác thủ công.',
+            time: '1 giờ trước',
+            fullContent: '📱 <strong>Android APK v3.2 - Auto-Renew</strong><br><br>✨ Tính năng mới:<br>✅ Tự động gia hạn Gold khi bị thu hồi<br>✅ Không cần cài đặt lại mỗi ngày<br>✅ Tối ưu pin và hiệu năng<br><br>📥 Tải ngay bản mới nhất!',
+            read: true,
+            action: 'Tải APK',
+            actionLink: '/android-apk'
+        }, {
+            id: 4,
+            type: 'event',
+            icon: '🎪',
+            title: '🎡 Vòng Quay May Mắn',
+            desc: 'Sự kiện đặc biệt: Quay mỗi ngày nhận thưởng lên đến 500.000đ!',
+            time: '2 giờ trước',
+            fullContent: '🎡 <strong>VÒNG QUAY MAY MẮN MỖI NGÀY</strong><br><br>🎁 Giải thưởng hấp dẫn:<br>💰 Tiền mặt lên đến 500.000đ<br>🎫 Voucher VIP miễn phí<br>🌟 Quà tặng đặc biệt<br><br>📅 Quay mỗi ngày - Nhận thưởng liền tay!<br><br>👉 Click "Tham gia ngay" để bắt đầu!',
+            read: false,
+            action: 'Tham gia ngay',
+            actionLink: '/vong-quay.html'
+        }, {
+            id: 5,
+            type: 'promo',
+            icon: '🎁',
+            title: '🎊 Tặng Canva Edu 3 Năm',
+            desc: 'Ưu đãi đặc biệt: Mua bất kỳ gói Locket Gold VIP được tặng kèm Canva Edu 3 năm.',
+            time: '3 giờ trước',
+            fullContent: '🎁 <strong>MUA 1 TẶNG 1 - CANVA EDU 3 NĂM</strong><br><br>✨ Áp dụng cho tất cả các gói VIP<br>✨ Tài khoản Canva Edu bản quyền<br>✨ Trị giá 60.000đ tặng kèm<br><br>📌 Ưu đãi có thời hạn!',
+            read: false,
+            action: 'Xem chi tiết',
+            actionLink: '/khuyen-mai'
+        }, {
+            id: 6,
+            type: 'alert',
+            icon: '⚠️',
+            title: 'Cảnh báo: Bảo mật tài khoản',
+            desc: 'Vui lòng không chia sẻ username Locket với người lạ để đảm bảo an toàn tài khoản.',
+            time: '5 giờ trước',
+            fullContent: '🔐 <strong>BẢO MẬT TÀI KHOẢN</strong><br><br>Chúng tôi khuyến cáo:<br>❌ KHÔNG chia sẻ username Locket với người khác<br>❌ KHÔNG click vào link lạ<br>❌ KHÔNG cung cấp thông tin cá nhân<br><br>🛡️ Nếu phát hiện bất thường, liên hệ Admin ngay!',
+            read: true,
+            action: 'Liên hệ Admin',
+            actionLink: 'https://zalo.me/0344421026'
+        }, {
+            id: 7,
+            type: 'system',
+            icon: '⚙️',
+            title: 'Bảo trì hệ thống 02/08/2026',
+            desc: 'Hệ thống sẽ bảo trì vào lúc 02:00 - 04:00 ngày 02/08/2026 để nâng cấp.',
+            time: '8 giờ trước',
+            fullContent: '🛠️ <strong>BẢO TRÌ HỆ THỐNG</strong><br><br>📅 Thời gian: 02:00 - 04:00 ngày 02/08/2026<br>⏰ Dự kiến: 2 tiếng<br><br>Trong thời gian này, website và dịch vụ sẽ tạm ngưng hoạt động.<br><br>Xin cảm ơn sự thông cảm!',
+            read: true,
+            action: 'Xem chi tiết',
+            actionLink: '/thong-bao/bao-tri'
+        }, {
+            id: 8,
+            type: 'event',
+            icon: '🎪',
+            title: '🏆 Cuộc thi Ảnh Locket',
+            desc: 'Tham gia cuộc thi ảnh Locket Gold cùng cộng đồng. Giải thưởng VIP 1 năm!',
+            time: '12 giờ trước',
+            fullContent: '📸 <strong>CUỘC THI ẢNH LOCKET GOLD</strong><br><br>🎯 Chủ đề: "Khoảnh khắc vàng"<br>🏆 Giải nhất: VIP 1 năm<br>🎁 Nhiều giải thưởng hấp dẫn khác<br><br>📝 Thể lệ và đăng ký tại link bên dưới.',
+            read: false,
+            action: 'Đăng ký',
+            actionLink: '/cuoc-thi-anh'
+        }, {
+            id: 9,
+            type: 'update',
+            icon: '🚀',
+            title: 'iOS Profile mới v2.5',
+            desc: 'Cập nhật profile DNS Locket Gold mới, tăng tốc đồng bộ và ổn định hơn.',
+            time: '1 ngày trước',
+            fullContent: '📱 <strong>iOS PROFILE v2.5</strong><br><br>✨ Cải thiện:<br>✅ Tốc độ đồng bộ nhanh hơn 3x<br>✅ Giảm tình trạng mất kết nối<br>✅ Hỗ trợ iOS 16-18<br><br>📥 Cập nhật ngay để có trải nghiệm tốt nhất!',
+            read: true,
+            action: 'Tải Profile',
+            actionLink: '/ios-profile'
+        }, {
+            id: 10,
+            type: 'promo',
+            icon: '🎁',
+            title: '💰 Giới thiệu bạn bè - Nhận 20.000đ',
+            desc: 'Giới thiệu bạn bè mua VIP, bạn nhận ngay 20.000đ vào tài khoản. Không giới hạn!',
+            time: '2 ngày trước',
+            fullContent: '👥 <strong>GIỚI THIỆU BẠN BÈ - NHẬN THƯỞNG</strong><br><br>💰 Mỗi bạn bè mua VIP: +20.000đ<br>🎯 Không giới hạn số lượng<br>📌 Cộng dồn không giới hạn<br><br>🎁 Càng nhiều càng vui, nhận thưởng ngay hôm nay!',
+            read: false,
+            action: 'Giới thiệu ngay',
+            actionLink: '/gioi-thieu'
+        }, {
+            id: 11,
+            type: 'system',
+            icon: '⚙️',
+            title: 'Cập nhật chính sách bảo hành',
+            desc: 'Chúng tôi đã nâng cấp chính sách bảo hành lên 1 đổi 1, vĩnh viễn không giới hạn.',
+            time: '3 ngày trước',
+            fullContent: '🛡️ <strong>CHÍNH SÁCH BẢO HÀNH MỚI</strong><br><br>✅ Bảo hành 1 đổi 1<br>✅ Vĩnh viễn không giới hạn<br>✅ Hỗ trợ 24/7<br><br>Cam kết bảo vệ quyền lợi khách hàng tối đa!',
+            read: true,
+            action: 'Xem chi tiết',
+            actionLink: '/bao-hanh'
+        }, {
+            id: 12,
+            type: 'event',
+            icon: '🎪',
+            title: '🎉 Kỷ niệm 1 năm Locket Gold',
+            desc: 'Chào mừng kỷ niệm 1 năm ra mắt, tất cả gói VIP giảm 30% trong 3 ngày!',
+            time: '5 ngày trước',
+            fullContent: '🎊 <strong>1 NĂM LOCKET GOLD - GIẢM 30%</strong><br><br>📅 Thời gian: 01/08 - 03/08/2026<br>🎯 Áp dụng: Tất cả các gói VIP<br>💰 Ưu đãi đặc biệt: Tặng kèm Canva Edu<br><br>Đừng bỏ lỡ cơ hội vàng này!',
+            read: false,
+            action: 'Xem ưu đãi',
+            actionLink: '/ky-niem-1-nam'
+        }];
+
+        // ===== STATE =====
+        let currentFilter = 'all';
+        let currentNotifData = [...notifications];
+
+        // ===== DOM REFS =====
+        const container = document.getElementById('notifContainer');
+        const modal = document.getElementById('modal');
+        const unreadBadge = document.getElementById('unreadBadge');
+
+        // ===== RENDER =====
+        function renderNotifications(filter = 'all') {
+            const filtered = filter === 'all' ?
+                notifications :
+                notifications.filter(n => n.type === filter);
+
+            currentNotifData = filtered;
+
+            // Update counts
+            updateCounts();
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <h3>Không có thông báo</h3>
+                        <p>Chưa có thông báo nào trong danh mục này.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(n => `
+                <div class="notif-item" onclick="openNotif(${n.id})">
+                    <div class="icon ${n.type}">${n.icon}</div>
+                    <div class="content">
+                        <div class="title" style="--title-color: ${n.read ? 'rgba(255,255,255,0.5)' : '#fff'}">
+                            ${n.title}
+                            <span class="tag ${n.type}">${getTypeLabel(n.type)}</span>
+                            ${!n.read ? '<span style="font-size:10px;color:#a78bfa;">● Mới</span>' : ''}
+                        </div>
+                        <div class="desc">${n.desc}</div>
+                        <div class="time">
+                            ${!n.read ? '<span class="dot"></span>' : '<span class="dot read"></span>'}
+                            ${n.time}
+                        </div>
+                    </div>
+                    ${n.action ? `<button class="action-btn" onclick="event.stopPropagation(); handleAction(${n.id})">${n.action}</button>` : ''}
+                </div>
+            `).join('');
+
+            // Update unread badge
+            const unreadCount = notifications.filter(n => !n.read).length;
+            unreadBadge.textContent = unreadCount;
+            unreadBadge.style.display = unreadCount > 0 ? 'inline' : 'none';
+        }
+
+        // ===== GET TYPE LABEL =====
+        function getTypeLabel(type) {
+            const labels = {
+                system: 'Hệ thống',
+                promo: 'Khuyến mãi',
+                update: 'Cập nhật',
+                event: 'Sự kiện',
+                alert: 'Cảnh báo'
+            };
+            return labels[type] || type;
+        }
+
+        // ===== UPDATE COUNTS =====
+        function updateCounts() {
+            const types = ['all', 'system', 'promo', 'update', 'event', 'alert'];
+            types.forEach(type => {
+                const count = type === 'all' 
+                    ? notifications.length 
+                    : notifications.filter(n => n.type === type).length;
+                const el = document.getElementById(`count${type.charAt(0).toUpperCase() + type.slice(1)}`);
+                if (el) el.textContent = count;
+            });
+        }
+
+        // ===== FILTER =====
+        function filterNotifications(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.filter === filter);
+            });
+            renderNotifications(filter);
+        }
+
+        // ===== OPEN NOTIFICATION =====
+        function openNotif(id) {
+            const notif = notifications.find(n => n.id === id);
+            if (!notif) return;
+
+            // Mark as read
+            if (!notif.read) {
+                notif.read = true;
+                renderNotifications(currentFilter);
+                showToast('✅ Đã đọc thông báo');
+            }
+
+            // Show modal
+            document.getElementById('modalIcon').textContent = notif.icon;
+            document.getElementById('modalTitle').textContent = notif.title;
+            document.getElementById('modalTime').textContent = notif.time;
+            document.getElementById('modalBody').innerHTML = notif.fullContent || notif.desc;
+
+            const actionBtn = document.getElementById('modalActionBtn');
+            if (notif.action && notif.actionLink) {
+                actionBtn.style.display = 'block';
+                actionBtn.textContent = notif.action;
+                actionBtn.dataset.link = notif.actionLink;
+            } else {
+                actionBtn.style.display = 'none';
+            }
+
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== CLOSE MODAL =====
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Click outside to close
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ESC to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ===== HANDLE ACTION =====
+        function handleAction(id) {
+            const notif = notifications.find(n => n.id === id);
+            if (!notif) return;
+
+            if (notif.actionLink) {
+                if (notif.actionLink.startsWith('http')) {
+                    window.open(notif.actionLink, '_blank');
+                } else {
+                    window.location.href = notif.actionLink;
+                }
+            }
+        }
+
+        function handleModalAction() {
+            const btn = document.getElementById('modalActionBtn');
+            const link = btn.dataset.link;
+            if (link) {
+                if (link.startsWith('http')) {
+                    window.open(link, '_blank');
+                } else {
+                    window.location.href = link;
+                }
+            }
+            closeModal();
+        }
+
+        // ===== MARK ALL READ =====
+        function markAllRead() {
+            notifications.forEach(n => n.read = true);
+            renderNotifications(currentFilter);
+            showToast('✅ Đã đánh dấu tất cả đã đọc');
+        }
+
+        // ===== CLEAR ALL =====
+        function clearAll() {
+            if (confirm('Bạn có chắc chắn muốn xóa tất cả thông báo?')) {
+                notifications.length = 0;
+                renderNotifications(currentFilter);
+                showToast('🗑️ Đã xóa tất cả thông báo');
+            }
+        }
+
+        // ===== TOAST =====
+        let toastTimeout;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== INIT =====
+        renderNotifications('all');
+
+        // ===== UPDATE REAL-TIME (Simulate) =====
+        // Mỗi 30 giây check thông báo mới (demo)
+        setInterval(() => {
+            // Simulate new notification
+            const hasNew = Math.random() > 0.7;
+            if (hasNew) {
+                const newNotif = {
+                    id: Date.now(),
+                    type: ['system', 'promo', 'event'][Math.floor(Math.random() * 3)],
+                    icon: '🔔',
+                    title: '📢 Thông báo mới!',
+                    desc: 'Bạn có thông báo mới từ Locket Gold. Nhấn để xem chi tiết.',
+                    time: 'Vừa xong',
+                    fullContent: '🎉 <strong>Bạn có thông báo mới!</strong><br><br>Đây là thông báo demo từ hệ thống.',
+                    read: false,
+                    action: 'Xem ngay',
+                    actionLink: '/thong-bao'
+                };
+                notifications.unshift(newNotif);
+                renderNotifications(currentFilter);
+                showToast('🔔 Bạn có thông báo mới!');
+            }
+        }, 30000);
+
+        console.log('🔔 Trang Thông Báo đã sẵn sàng!');
+        console.log('📊 Tổng số thông báo:', notifications.length);
+    </script>
+
+</body>
+
+</html>

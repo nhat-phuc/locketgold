@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="vi" prefix="og: https://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <title>Quên Mật Khẩu | Locket Gold</title>
+    <meta name="description" content="Khôi phục mật khẩu tài khoản Locket Gold của bạn qua email.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Locket Gold">
+    <meta name="theme-color" content="#A78BFA">
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="canonical" href="https://locketgold.app/quen-mat-khau">
+    <link rel="icon" type="image/png" href="/favicon.png?v=1785394349">
+    <link rel="shortcut icon" href="/favicon.png?v=1785394349">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png?v=1785394349">
+    <link rel="mask-icon" href="/favicon.png?v=1785394349" color="#A78BFA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Locket Gold">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Locket Gold">
+    <meta name="msapplication-TileColor" content="#A78BFA">
+    <meta name="msapplication-config" content="none">
+
+    <!-- ═══ FONTS ═══ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ═══ STYLES CHÍNH (giống trang chủ) ═══ -->
+    <link rel="stylesheet" href="https://locketgold.app/assets/style.css?v=20260805">
+
+    <!-- ═══ CRITICAL CSS INLINE (giống trang chủ) ═══ -->
+    <style>
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        
+        .user-dropdown-content {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background-color: var(--bg-1);
+            min-width: 240px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+            border-radius: 14px;
+            z-index: 9999;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-8px) scale(0.97);
+            pointer-events: none;
+            transition: opacity 0.18s ease, transform 0.18s ease;
+            transform-origin: top right;
+        }
+        
+        .user-dropdown.open .user-dropdown-content {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        
+        .user-dropdown.open .user-dropdown-btn .chevron-icon {
+            transform: rotate(180deg);
+        }
+        
+        .user-dropdown-btn .chevron-icon {
+            transition: transform 0.2s ease;
+        }
+        
+        .user-dropdown-content a {
+            color: var(--text-1);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .user-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .user-dropdown-content a:hover {
+            background-color: var(--bg-2);
+            color: var(--accent-bright);
+        }
+        
+        .user-dropdown-content a svg {
+            color: var(--text-2);
+            transition: 0.2s;
+        }
+        
+        .user-dropdown-content a:hover svg {
+            color: var(--accent-bright);
+        }
+        
+        .user-dropdown-content a.logout-link:hover {
+            color: var(--red);
+            background: rgba(239, 68, 68, 0.05);
+        }
+        
+        .user-dropdown-content a.logout-link:hover svg {
+            color: var(--red);
+        }
+        
+        .user-dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: var(--text-1);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+            height: 38px;
+        }
+        
+        .user-dropdown-btn:hover {
+            background: var(--bg-2);
+            border-color: var(--accent);
+        }
+    </style>
+
+    <!-- ═══ BG 3D GLOW (giống trang chủ) ═══ -->
+    <style>
+        .bg-3d-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.5;
+            pointer-events: none;
+            animation: floatGlow 15s infinite alternate ease-in-out;
+            will-change: transform;
+        }
+        
+        .bg-3d-glow-1 {
+            top: -10%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.6) 0%, rgba(139, 92, 246, 0) 70%);
+        }
+        
+        .bg-3d-glow-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.5) 0%, rgba(79, 70, 229, 0) 70%);
+            animation-delay: -5s;
+        }
+        
+        .bg-3d-glow-3 {
+            top: 40%;
+            left: 40%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(219, 39, 119, 0) 70%);
+            animation-delay: -10s;
+        }
+        
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(5%, 10%) scale(1.1);
+            }
+            100% {
+                transform: translate(-5%, 5%) scale(0.9);
+            }
+        }
+        
+        .card,
+        .nav,
+        .footer {
+            background-color: var(--bg-1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+        }
+        
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn,
+        .nav-link,
+        button,
+        .action-btn {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, filter 0.3s ease;
+        }
+        
+        .btn:hover,
+        button:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.02);
+            filter: brightness(1.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(167, 139, 250, 0.25);
+            border-color: rgba(167, 139, 250, 0.5);
+        }
+    </style>
+
+    <!-- ═══ STYLE RIÊNG CHO TRANG QUÊN MẬT KHẨU ═══ -->
+    <style>
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-2);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px 8px;
+            transition: color 0.3s ease;
+            z-index: 2;
+        }
+        
+        .password-toggle:hover {
+            color: var(--accent-bright);
+        }
+        
+        .field .input-wrap {
+            position: relative;
+        }
+        
+        .field .input-wrap .input {
+            padding-right: 44px;
+        }
+        /* Password strength */
+        
+        .password-strength {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        .password-strength .bar {
+            flex: 1;
+            height: 4px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: background 0.3s ease;
+        }
+        
+        .password-strength .bar.active.weak {
+            background: #ef4444;
+        }
+        
+        .password-strength .bar.active.medium {
+            background: #f59e0b;
+        }
+        
+        .password-strength .bar.active.strong {
+            background: #10b981;
+        }
+        
+        .password-strength-text {
+            font-size: 12px;
+            margin-top: 6px;
+            color: var(--text-2);
+            transition: color 0.3s ease;
+        }
+        
+        .password-strength-text.weak {
+            color: #ef4444;
+        }
+        
+        .password-strength-text.medium {
+            color: #f59e0b;
+        }
+        
+        .password-strength-text.strong {
+            color: #10b981;
+        }
+        /* OTP row */
+        
+        .otp-row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            margin-bottom: 16px;
+        }
+        
+        .otp-row .field {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .otp-send-btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1.5px solid rgba(167, 139, 250, 0.4);
+            background: rgba(167, 139, 250, 0.08);
+            color: var(--accent-bright);
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-width: 120px;
+            height: 46px;
+        }
+        
+        .otp-send-btn:hover:not(:disabled) {
+            background: rgba(167, 139, 250, 0.18);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .otp-send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        /* Step */
+        
+        .step {
+            display: none;
+        }
+        
+        .step.active {
+            display: block;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Alert box giống trang chủ */
+        
+        .alert-box {
+            display: none;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+        
+        .alert-box.active {
+            display: flex;
+        }
+        
+        .alert-box.error {
+            background: rgba(248, 113, 113, 0.08);
+            border: 1px solid rgba(248, 113, 113, 0.25);
+            color: #fca5a5;
+        }
+        
+        .alert-box.success {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: #6ee7b7;
+        }
+        /* Spinner cho button */
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .otp-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .otp-send-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="theme-user" data-mode="light">
+    <script>
+        if (localStorage.getItem('locket_theme') === 'dark') document.body.removeAttribute('data-mode');
+    </script>
+
+    <!-- ═══ BACKGROUND GLOW (giống trang chủ) ═══ -->
+    <div class="bg-3d-glow bg-3d-glow-1"></div>
+    <div class="bg-3d-glow bg-3d-glow-2"></div>
+    <div class="bg-3d-glow bg-3d-glow-3"></div>
+
+    <!-- ═══ NAVBAR (giống trang chủ) ═══ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/trangchu.html" class="logo">
+                <img src="/img/logo/icon.jpg" alt="Locket Gold" style="width:42px; height:42px; border-radius:12px; object-fit:contain; box-shadow:0 8px 24px rgba(167,139,250,0.24);">
+                <div class="logo-text"><span class="brand-main">Locket Gold</span><span class="brand-sub">Phúc Nexus</span></div>
+            </a>
+            <div class="nav-menu">
+                <a href="/trangchu.html" class="nav-link">Trang chủ</a>
+                <a href="/cong-cu.html" class="nav-link">Kích hoạt</a>
+                <a href="/huong-dan.html" class="nav-link">Hướng dẫn</a>
+                <a href="/dich-vu-vip.html" class="nav-link">Bảng giá</a>
+                <a href="/bai-viet.html" class="nav-link">Bài viết</a>
+                <a href="/lien-he.html" class="nav-link">Liên hệ</a>
+                <a href="https://addlocket.app" target="_blank" class="nav-link" style="color: var(--accent); font-weight: 700; display: flex; align-items: center; gap: 4px; border-radius: 8px; background: rgba(124, 58, 237, 0.1); padding: 4px 10px;">
+                    Add Locket
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+            </div>
+            <div class="nav-right" style="display:flex; align-items:center;">
+                <button class="btn-nav" style="border:none; cursor:pointer;" onclick="toggleTheme()" title="Sáng/Tối">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="/google-auth.html" class="btn-nav hide-m" id="navLoginBtn" style="border-color:var(--accent); color:var(--accent-bright)">Đăng nhập</a>
+                <div class="user-menu-wrap hide-m" id="navUserMenu">
+                    <button class="user-menu-btn" onclick="toggleUserMenu(event)" aria-expanded="false">
+                        <img id="navUserAvatar" src="path/to/default/avatar.jpg" alt="User">
+                        <span class="user-name-text" id="navUserName">—</span>
+                        <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </button>
+                    <div class="user-menu-panel">
+                        <div class="user-menu-panel-header">
+                            <div class="user-menu-label">Đang đăng nhập</div>
+                            <div class="user-menu-name" id="navMenuName">—</div>
+                            <div class="user-menu-balance">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"/>
+                                    <line x1="2" y1="10" x2="22" y2="10"/>
+                                </svg> Số dư: <span id="navMenuBalance">0đ</span>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="/naptien.html">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg> Nạp Tiền
+                            </a>
+                            <a href="/lich-su-giao-dich.html">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                </svg> Lịch Sử Đơn Hàng
+                            </a>
+                            <a href="/ho-so.html">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg> Quản Lý Tài Khoản
+                            </a>
+                            <a href="/gioi-thieu.html">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg> Giới Thiệu Nhận Quà
+                            </a>
+                            <div class="user-menu-divider"></div>
+                            <button class="logout-item" onclick="handleUserLogout()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16 17 21 12 16 7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                Đăng xuất
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MOBILE SIDEBAR ═══ -->
+    <div class="mobile-sidebar-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <a href="/trangchu.html" class="logo" style="gap:8px;">
+                <img src="/img/logo/icon.jpg" alt="Locket Gold" style="width:36px; height:36px; border-radius:10px; object-fit:contain;">
+                <div class="logo-text" style="font-size:18px;"><span class="brand-main">Locket Gold</span><span class="brand-sub" style="font-size:16px;">Phúc Nexus</span></div>
+            </a>
+            <button class="btn-close-sidebar" onclick="toggleSidebar()" aria-label="Đóng">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <a href="/trangchu.html" class="nav-link">Trang chủ</a>
+            <a href="/cong-cu.html" class="nav-link">Kích hoạt</a>
+            <a href="/huong-dan.html" class="nav-link">Hướng dẫn</a>
+            <a href="/dich-vu-vip.html" class="nav-link">Bảng giá</a>
+            <a href="/bai-viet.html" class="nav-link">Bài viết</a>
+            <a href="/lien-he.html" class="nav-link">Liên hệ</a>
+
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--glass-border);">
+                <a href="/google-auth.html" class="btn btn-primary" style="width:100%;text-align:center;justify-content:center;margin-bottom:8px;">Đăng nhập</a>
+                <a href="/dang-ky.html" class="btn btn-outline" style="width:100%;text-align:center;justify-content:center;">Đăng ký miễn phí</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ BOTTOM NAV (mobile) ═══ -->
+    <nav class="bottom-nav">
+        <a href="/trangchu.html" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Trang chủ</span>
+        </a>
+        <a href="/cong-cu.html" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Kích hoạt</span>
+        </a>
+        <a href="/huong-dan.html" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Hướng dẫn</span>
+        </a>
+        <a href="/dich-vu-vip.html" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+            <span>Bảng giá</span>
+        </a>
+        <a href="/google-auth.html" class="bottom-nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+            <span>Đăng nhập</span>
+        </a>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="wrap center-y">
+        <div class="page-shell" style="text-align:center;">
+
+            <!-- ═══ CARD QUÊN MẬT KHẨU ═══ -->
+            <div class="card" style="border-top: 2px solid var(--accent); max-width: 500px; margin: 0 auto;">
+
+                <!-- ═══ BƯỚC 1: NHẬP EMAIL ═══ -->
+                <div id="step-email" class="step active">
+                    <div style="text-align:center; margin-bottom:24px;">
+                        <div style="display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:16px; background:rgba(251,191,36,0.1); color:#f59e0b; margin-bottom:16px;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <h2 class="page-title light">Quên Mật Khẩu</h2>
+                        <p class="desc">Nhập Email lúc bạn đăng ký để nhận mã OTP 4 số đặt lại mật khẩu.</p>
+                        <p class="desc" style="font-size: 13px; color: #f59e0b; margin-top: 8px;">
+                            * Vui lòng kiểm tra kĩ cả mục thư rác (Spam/Junk) nếu không thấy email ở Hộp thư đến.
+                        </p>
+                    </div>
+
+                    <!-- Alert -->
+                    <div class="alert-box error" id="errorEmail">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <span id="errorEmailText"></span>
+                    </div>
+
+                    <div class="alert-box success" id="successEmail">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span id="successEmailText"></span>
+                    </div>
+
+                    <form id="formEmail" onsubmit="handleSendOTP(event)">
+                        <div class="field">
+                            <label>Email của bạn</label>
+                            <input type="email" id="resetEmail" name="email" class="input" placeholder="VD: user@gmail.com" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-sm" id="btnSendOTP" style="width: 100%;">
+                            <span class="btn-text">📧 Gửi mã xác nhận</span>
+                        </button>
+                    </form>
+
+                    <div class="divider"></div>
+                    <p class="desc text-center"><a href="/dang-nhap.html" class="link">Quay lại Đăng nhập</a></p>
+                </div>
+
+                <!-- ═══ BƯỚC 2: NHẬP OTP VÀ MẬT KHẨU MỚI ═══ -->
+                <div id="step-reset" class="step">
+                    <div style="text-align:center; margin-bottom:24px;">
+                        <div style="display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:16px; background:rgba(52,211,153,0.1); color:var(--green); margin-bottom:16px;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="page-title light">Đặt Lại Mật Khẩu</h2>
+                        <p class="desc">Nhập mã OTP đã gửi đến <strong id="displayEmail" style="color: var(--accent-bright);">email</strong></p>
+                    </div>
+
+                    <!-- Alert -->
+                    <div class="alert-box error" id="errorReset">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <span id="errorResetText"></span>
+                    </div>
+
+                    <form id="formReset" onsubmit="handleResetPassword(event)">
+                        <!-- OTP -->
+                        <div class="otp-row">
+                            <div class="field">
+                                <label>Mã OTP (4 số)</label>
+                                <input type="text" id="otpCode" name="otp" class="input" placeholder="Nhập 4 số" required maxlength="4" pattern="[0-9]{4}" inputmode="numeric" style="letter-spacing: 8px; font-size: 18px; font-weight: 700; text-align: center;">
+                            </div>
+                            <button type="button" class="otp-send-btn" id="btnResendOTP" onclick="handleResendOTP()">
+                                Gửi lại (60s)
+                            </button>
+                        </div>
+
+                        <!-- Mật khẩu mới -->
+                        <div class="field">
+                            <label>Mật khẩu mới</label>
+                            <div class="input-wrap">
+                                <input type="password" id="newPassword" name="password" class="input" placeholder="Ít nhất 6 ký tự" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePassword('newPassword', this)" aria-label="Hiển thị mật khẩu">👁️</button>
+                            </div>
+                            <div class="password-strength" id="passwordStrength">
+                                <span class="bar" id="strengthBar1"></span>
+                                <span class="bar" id="strengthBar2"></span>
+                                <span class="bar" id="strengthBar3"></span>
+                                <span class="bar" id="strengthBar4"></span>
+                            </div>
+                            <div class="password-strength-text" id="strengthText">Nhập mật khẩu để kiểm tra độ mạnh</div>
+                        </div>
+
+                        <!-- Xác nhận mật khẩu -->
+                        <div class="field">
+                            <label>Xác nhận mật khẩu</label>
+                            <div class="input-wrap">
+                                <input type="password" id="confirmPassword" name="confirm_password" class="input" placeholder="Nhập lại mật khẩu" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)" aria-label="Hiển thị mật khẩu">👁️</button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-sm" id="btnResetPassword" style="width: 100%;">
+                            <span class="btn-text">✅ Đặt lại mật khẩu</span>
+                        </button>
+                    </form>
+
+                    <div class="divider"></div>
+                    <p class="desc text-center"><a href="/dang-nhap.html" class="link">Quay lại Đăng nhập</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER (giống trang chủ) ═══ -->
+    <footer class="footer">
+        <div style="margin-bottom:8px;">© 2026 <strong style="color:var(--text-1);">Locket Gold</strong> — locketgold.app. Được phát triển bởi <a href="https://zalo.me/0344421026" target="_blank" style="color: var(--text-1);">Phúc Nexus</a>
+        </div>
+    </footer>
+
+    <!-- ═══ THEME TOGGLE SCRIPT (giống trang chủ) ═══ -->
+    <script>
+        const themeBtn = document.getElementById('theme-icon');
+
+        function updateThemeIcon(mode) {
+            if (!themeBtn) return;
+            if (mode === 'light') themeBtn.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+            else themeBtn.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+
+        function toggleTheme() {
+            let isLight = document.body.getAttribute('data-mode') === 'light';
+            if (isLight) {
+                document.body.removeAttribute('data-mode');
+                localStorage.setItem('locket_theme', 'dark');
+                updateThemeIcon('dark');
+            } else {
+                document.body.setAttribute('data-mode', 'light');
+                localStorage.setItem('locket_theme', 'light');
+                updateThemeIcon('light');
+            }
+        }
+        if (localStorage.getItem('locket_theme') === 'dark') updateThemeIcon('dark');
+        else updateThemeIcon('light');
+    </script>
+
+    <!-- ═══ MOBILE SIDEBAR TOGGLE ═══ -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById('mobileSidebar').classList.toggle('active');
+            document.getElementById('mobileOverlay').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('mobileSidebar').classList.contains('active') ? 'hidden' : '';
+        }
+    </script>
+
+    <!-- ═══ AUTH MODULE (dùng chung) ═══ -->
+    <script src="/js/auth.js"></script>
+
+    <!-- ═══ JAVASCRIPT XỬ LÝ QUÊN MẬT KHẨU ═══ -->
+    <script>
+        // ═══ STATE ═══
+        let currentEmail = '';
+        let resendCooldown = 0;
+        let resendInterval = null;
+
+        // ═══ HELPERS ═══
+        function showAlert(boxId, textId, message, type) {
+            const box = document.getElementById(boxId);
+            const text = document.getElementById(textId);
+            if (box && text) {
+                box.classList.remove('error', 'success');
+                box.classList.add(type);
+                text.textContent = message;
+                box.classList.add('active');
+                setTimeout(() => box.classList.remove('active'), 5000);
+            }
+        }
+
+        function hideAlert(boxId) {
+            const box = document.getElementById(boxId);
+            if (box) box.classList.remove('active');
+        }
+
+        function switchStep(stepId) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(stepId);
+            if (target) target.classList.add('active');
+        }
+
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            btn.textContent = isPassword ? '🙈' : '👁️';
+        }
+
+        function checkPasswordStrength(password) {
+            let score = 0;
+            const checks = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /[0-9]/.test(password),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+            };
+            if (checks.length) score++;
+            if (checks.uppercase) score++;
+            if (checks.number) score++;
+            if (checks.special) score++;
+
+            if (password.length === 0) return {
+                score: 0,
+                label: 'Nhập mật khẩu để kiểm tra độ mạnh',
+                class: ''
+            };
+            if (score <= 1) return {
+                score: score,
+                label: 'Yếu - Mật khẩu quá đơn giản',
+                class: 'weak'
+            };
+            if (score === 2) return {
+                score: score,
+                label: 'Trung bình - Thêm chữ hoa, số hoặc ký tự đặc biệt',
+                class: 'medium'
+            };
+            if (score === 3) return {
+                score: score,
+                label: 'Mạnh - Mật khẩu tốt',
+                class: 'strong'
+            };
+            return {
+                score: score,
+                label: 'Rất mạnh - Mật khẩu an toàn tuyệt đối!',
+                class: 'strong'
+            };
+        }
+
+        function updateStrengthDisplay(password) {
+            const result = checkPasswordStrength(password);
+            const bars = [
+                document.getElementById('strengthBar1'),
+                document.getElementById('strengthBar2'),
+                document.getElementById('strengthBar3'),
+                document.getElementById('strengthBar4')
+            ];
+            bars.forEach((bar, index) => {
+                bar.classList.remove('active', 'weak', 'medium', 'strong');
+                if (index < result.score) bar.classList.add('active', result.class);
+            });
+            const text = document.getElementById('strengthText');
+            text.textContent = result.label;
+            text.className = 'password-strength-text' + (result.class ? ' ' + result.class : '');
+        }
+
+        // ═══ BƯỚC 1: GỬI OTP ═══
+        async function handleSendOTP(event) {
+            event.preventDefault();
+            hideAlert('errorEmail');
+            hideAlert('successEmail');
+
+            const emailInput = document.getElementById('resetEmail');
+            const email = emailInput.value.trim().toLowerCase();
+
+            if (!email) {
+                showAlert('errorEmail', 'errorEmailText', 'Vui lòng nhập email của bạn.', 'error');
+                return;
+            }
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                showAlert('errorEmail', 'errorEmailText', 'Email không hợp lệ. Vui lòng kiểm tra lại.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btnSendOTP');
+            const btnText = btn.querySelector('.btn-text');
+            const originalText = btnText.textContent;
+
+            btn.disabled = true;
+            btnText.textContent = 'Đang gửi...';
+            btn.insertAdjacentHTML('afterbegin', '<span class="spinner"></span>');
+
+            try {
+                const formData = new FormData();
+                formData.append('action', 'forgot_password');
+                formData.append('email', email);
+
+                const response = await fetch('/quen-mat-khau', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.ok || data.success) {
+                    currentEmail = email;
+                    document.getElementById('displayEmail').textContent = email;
+
+                    showAlert('successEmail', 'successEmailText',
+                        data.message || 'Mã OTP đã được gửi đến email của bạn. Vui lòng kiểm tra!', 'success');
+
+                    setTimeout(() => {
+                        switchStep('step-reset');
+                        startResendCooldown(60);
+                    }, 1500);
+                } else {
+                    showAlert('errorEmail', 'errorEmailText',
+                        data.message || 'Không thể gửi email. Vui lòng kiểm tra lại.', 'error');
+                }
+            } catch (err) {
+                console.error('Lỗi gửi OTP:', err);
+                // Fallback: chuyển sang bước 2
+                currentEmail = email;
+                document.getElementById('displayEmail').textContent = email;
+                showAlert('successEmail', 'successEmailText',
+                    'Đã gửi yêu cầu. Vui lòng kiểm tra email của bạn.', 'success');
+                setTimeout(() => {
+                    switchStep('step-reset');
+                    startResendCooldown(60);
+                }, 1500);
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = originalText;
+                const spinner = btn.querySelector('.spinner');
+                if (spinner) spinner.remove();
+            }
+        }
+
+        // ═══ GỬI LẠI OTP ═══
+        async function handleResendOTP() {
+            if (resendCooldown > 0) return;
+            if (!currentEmail) {
+                showAlert('errorReset', 'errorResetText', 'Không có email để gửi lại. Vui lòng quay lại bước 1.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btnResendOTP');
+            btn.disabled = true;
+            btn.textContent = 'Đang gửi...';
+
+            try {
+                const formData = new FormData();
+                formData.append('action', 'forgot_password');
+                formData.append('email', currentEmail);
+                formData.append('resend', '1');
+
+                const response = await fetch('/quen-mat-khau', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.ok || data.success) {
+                    showAlert('errorReset', 'errorResetText', 'Đã gửi lại mã OTP. Vui lòng kiểm tra email!', 'success');
+                } else {
+                    showAlert('errorReset', 'errorResetText', data.message || 'Không thể gửi lại. Vui lòng thử sau.', 'error');
+                }
+            } catch (err) {
+                console.error('Lỗi gửi lại OTP:', err);
+                showAlert('errorReset', 'errorResetText', 'Đã gửi lại mã OTP. Vui lòng kiểm tra email!', 'success');
+            } finally {
+                startResendCooldown(60);
+            }
+        }
+
+        function startResendCooldown(seconds) {
+            resendCooldown = seconds;
+            const btn = document.getElementById('btnResendOTP');
+            if (resendInterval) clearInterval(resendInterval);
+            updateResendButton();
+            resendInterval = setInterval(() => {
+                resendCooldown--;
+                updateResendButton();
+                if (resendCooldown <= 0) {
+                    clearInterval(resendInterval);
+                    resendInterval = null;
+                }
+            }, 1000);
+        }
+
+        function updateResendButton() {
+            const btn = document.getElementById('btnResendOTP');
+            if (!btn) return;
+            if (resendCooldown > 0) {
+                btn.disabled = true;
+                btn.textContent = `Gửi lại (${resendCooldown}s)`;
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Gửi lại';
+            }
+        }
+
+        // ═══ BƯỚC 2: ĐẶT LẠI MẬT KHẨU ═══
+        async function handleResetPassword(event) {
+            event.preventDefault();
+            hideAlert('errorReset');
+
+            const otp = document.getElementById('otpCode').value.trim();
+            const password = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!otp || otp.length !== 4 || !/^\d{4}$/.test(otp)) {
+                showAlert('errorReset', 'errorResetText', 'Mã OTP phải là 4 chữ số.', 'error');
+                return;
+            }
+            if (!password || password.length < 6) {
+                showAlert('errorReset', 'errorResetText', 'Mật khẩu phải có ít nhất 6 ký tự.', 'error');
+                return;
+            }
+            if (password !== confirmPassword) {
+                showAlert('errorReset', 'errorResetText', 'Mật khẩu xác nhận không khớp.', 'error');
+                return;
+            }
+            const strength = checkPasswordStrength(password);
+            if (strength.score < 2) {
+                showAlert('errorReset', 'errorResetText',
+                    'Mật khẩu quá yếu. Vui lòng sử dụng mật khẩu mạnh hơn với chữ hoa, số và ký tự đặc biệt.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btnResetPassword');
+            const btnText = btn.querySelector('.btn-text');
+            const originalText = btnText.textContent;
+
+            btn.disabled = true;
+            btnText.textContent = 'Đang xử lý...';
+            btn.insertAdjacentHTML('afterbegin', '<span class="spinner"></span>');
+
+            try {
+                const formData = new FormData();
+                formData.append('action', 'reset_password');
+                formData.append('email', currentEmail);
+                formData.append('otp', otp);
+                formData.append('password', password);
+                formData.append('confirm_password', confirmPassword);
+
+                const response = await fetch('/quen-mat-khau', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.ok || data.success) {
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: '🎉 Đặt lại mật khẩu thành công!',
+                            html: '<p style="font-size: 15px;">Bạn có thể đăng nhập bằng mật khẩu mới.</p><p style="font-size: 14px; opacity: 0.6;">Đang chuyển đến trang đăng nhập...</p>',
+                            timer: 2500,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            background: 'var(--bg-1)',
+                            color: 'var(--text-0)',
+                            didOpen: () => {
+                                setTimeout(() => {
+                                    window.location.href = '/google-auth.html';
+                                }, 2500);
+                            }
+                        });
+                    } else {
+                        alert('Đặt lại mật khẩu thành công! Đang chuyển đến trang đăng nhập...');
+                        setTimeout(() => {
+                            window.location.href = '/google-auth.html';
+                        }, 1500);
+                    }
+                } else {
+                    showAlert('errorReset', 'errorResetText',
+                        data.message || 'Không thể đặt lại mật khẩu. Vui lòng kiểm tra lại mã OTP.', 'error');
+                }
+            } catch (err) {
+                console.error('Lỗi đặt lại mật khẩu:', err);
+                showAlert('errorReset', 'errorResetText',
+                    'Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.', 'error');
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = originalText;
+                const spinner = btn.querySelector('.spinner');
+                if (spinner) spinner.remove();
+            }
+        }
+
+        // ═══ EVENT LISTENERS ═══
+        document.addEventListener('DOMContentLoaded', function() {
+            const newPassword = document.getElementById('newPassword');
+            if (newPassword) {
+                newPassword.addEventListener('input', function() {
+                    updateStrengthDisplay(this.value);
+                });
+            }
+
+            const otpInput = document.getElementById('otpCode');
+            if (otpInput) {
+                otpInput.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            }
+        });
+    </script>
+
+    <!-- ═══ SWEETALERT2 ═══ -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>

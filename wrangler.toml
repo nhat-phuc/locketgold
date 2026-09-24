@@ -1,0 +1,41 @@
+name = "locketgold"
+main = "_worker.js"          # ← SỬA DÒNG NÀY (thêm dấu _)
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+# ═══════════════════════════════════════════════════════════
+# KV NAMESPACES
+# ═══════════════════════════════════════════════════════════
+
+# KV namespace để lưu users
+[[kv_namespaces]]
+binding = "USERS_KV"
+id = "b3ef06f3a3b44a2bbef31cc8fbd587d7"
+
+# KV namespace để lưu session
+[[kv_namespaces]]
+binding = "SESSIONS_KV"
+id = "b3ef06f3a3b44a2bbef31cc8fbd587d7"
+
+# KV namespace để lưu đơn nạp tiền + số dư
+[[kv_namespaces]]
+binding = "RECHARGE_KV"
+id = "027c12f14b3047859b19ef68e31870eb"
+preview_id = "027c12f14b3047859b19ef68e31870eb"
+
+# ═══════════════════════════════════════════════════════════
+# ENVIRONMENT VARIABLES
+# ═══════════════════════════════════════════════════════════
+[vars]
+GOOGLE_CLIENT_ID = "819582407384-cvhmd3ue83lp3pg17b6chut1gg7kmsjq.apps.googleusercontent.com"
+SESSION_SECRET = "change-this-to-a-long-random-string"
+VIETQR_BASE_URL = "https://vietqr.app/img"
+
+# ═══ CẤU HÌNH NGÂN HÀNG ═══
+BANK_ID = "ACB"
+BANK_NAME = "ACB"
+BANK_ACC = "7898211"
+BANK_HOLDER = "TRAN NHAT PHUC"
+BANK_STORE = "Hệ Thống Locket Gold"
+
+# VIETQR_API_KEY sẽ set bằng lệnh:
+# wrangler secret put VIETQR_API_KEY

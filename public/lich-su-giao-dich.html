@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử Giao Dịch | Locket Gold</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#A78BFA">
+    <link rel="icon" type="image/png" href="/img/logo/icon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://locketgold.app/assets/style.css?v=20260805">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           CSS LỊCH SỬ GIAO DỊCH
+           ═══════════════════════════════════════════════════════════════ */
+        
+        .history-section {
+            margin: 40px 0 60px;
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+        }
+        
+        .history-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .history-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        body[data-mode="dark"] .history-title {
+            color: #fff;
+        }
+        
+        .history-subtitle {
+            color: #6b7280;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        body[data-mode="dark"] .history-subtitle {
+            color: #9ca3af;
+        }
+        
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .history-item {
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .03);
+            transition: all .3s ease;
+        }
+        
+        body[data-mode="dark"] .history-item {
+            background: rgba(255, 255, 255, .03);
+            border-color: rgba(255, 255, 255, .08);
+        }
+        
+        .history-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, .06);
+            border-color: #e5e7eb;
+        }
+        
+        body[data-mode="dark"] .history-item:hover {
+            border-color: rgba(167, 139, 250, .5);
+        }
+        
+        .history-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .history-meta {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .history-row1 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .history-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1f2937;
+            letter-spacing: -.2px;
+        }
+        
+        body[data-mode="dark"] .history-name {
+            color: #f3f4f6;
+        }
+        
+        .history-badge-role {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+        
+        .history-badge-discount {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: #fef2f2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        body[data-mode="dark"] .history-badge-discount {
+            background: rgba(248, 113, 113, .15);
+            color: #f87171;
+        }
+        
+        .history-time {
+            font-size: 12.5px;
+            color: #9ca3af;
+            font-weight: 500;
+        }
+        
+        .history-right {
+            text-align: right;
+            flex-shrink: 0;
+            padding-left: 10px;
+        }
+        
+        .history-amount {
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: -.3px;
+        }
+        
+        .history-amount.plus {
+            color: #dc2626;
+        }
+        
+        body[data-mode="dark"] .history-amount.plus {
+            color: #f87171;
+        }
+        
+        .history-amount.minus {
+            color: #16a34a;
+        }
+        
+        body[data-mode="dark"] .history-amount.minus {
+            color: #4ade80;
+        }
+        
+        .history-status {
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+        
+        .history-status.success {
+            color: #16a34a;
+        }
+        
+        .history-status.pending {
+            color: #f59e0b;
+        }
+        
+        .history-status.failed {
+            color: #ef4444;
+        }
+        
+        .history-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .history-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid #e5e7eb;
+            background: #fff;
+            color: #4b5563;
+            transition: all .2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .02);
+        }
+        
+        body[data-mode="dark"] .history-btn {
+            background: rgba(255, 255, 255, .04);
+            border-color: rgba(255, 255, 255, .1);
+            color: #9ca3af;
+        }
+        
+        .history-btn:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+        }
+        
+        body[data-mode="dark"] .history-btn:hover {
+            background: rgba(255, 255, 255, .08);
+        }
+        
+        .history-btn.close-btn {
+            background: #f9fafb;
+            color: #9ca3af;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(167, 139, 250, .2);
+            border-top-color: #a78bfa;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+        
+        @media (max-width: 1024px) {
+            .history-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .history-item {
+                padding: 12px 16px;
+                border-radius: 16px;
+            }
+            .history-icon {
+                width: 38px;
+                height: 38px;
+            }
+            .history-name {
+                font-size: 14px;
+            }
+            .history-amount {
+                font-size: 15px;
+            }
+            .history-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body class="theme-user" data-mode="light">
+    <script>
+        if (localStorage.getItem('locket_theme') === 'dark') document.body.removeAttribute('data-mode');
+    </script>
+
+    <!-- Navbar -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/trangchu.html" class="logo">
+                <img src="/img/logo/icon.jpg" alt="Locket Gold" style="width:42px; height:42px; border-radius:12px; object-fit:contain;">
+                <div class="logo-text"><span class="brand-main">Locket Gold</span><span class="brand-sub">Phúc Nexus</span></div>
+            </a>
+            <div class="nav-menu">
+                <a href="/trangchu.html" class="nav-link">Trang chủ</a>
+                <a href="/cong-cu.html" class="nav-link">Kích hoạt</a>
+                <a href="/huong-dan.html" class="nav-link">Hướng dẫn</a>
+                <a href="/dich-vu-vip.html" class="nav-link">Bảng giá</a>
+                <a href="/bai-viet.html" class="nav-link">Bài viết</a>
+                <a href="/lien-he.html" class="nav-link">Liên hệ</a>
+            </div>
+            <div class="nav-right" style="display:flex; align-items:center;">
+                <button class="btn-nav" style="border:none; cursor:pointer;" onclick="toggleTheme()" title="Sáng/Tối">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="/google-auth.html" class="btn-nav hide-m" id="navLoginBtn" style="border-color:var(--accent); color:var(--accent-bright)">Đăng nhập</a>
+                <div class="user-menu-wrap hide-m" id="navUserMenu">
+                    <button class="user-menu-btn" onclick="toggleUserMenu(event)" aria-expanded="false">
+                        <img id="navUserAvatar" src="path/to/default/avatar.jpg" alt="User">
+                        <span class="user-name-text" id="navUserName">—</span>
+                        <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="user-menu-panel">
+                        <div class="user-menu-panel-header">
+                            <div class="user-menu-label">Đang đăng nhập</div>
+                            <div class="user-menu-name" id="navMenuName">—</div>
+                            <div class="user-menu-balance">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg> Số dư: <span id="navMenuBalance">0đ</span>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="/naptien.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Nạp Tiền</a>
+                            <a href="/lich-su-giao-dich.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Lịch Sử Đơn Hàng</a>
+                            <a href="/ho-so.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Quản Lý Tài Khoản</a>
+                            <div class="user-menu-divider"></div>
+                            <button class="logout-item" onclick="handleUserLogout()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Đăng xuất</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap center-y">
+        <div class="page-shell" style="text-align:center;">
+            <div class="history-section">
+                <div class="history-header">
+                    <h2 class="history-title">Lịch Sử Giao Dịch</h2>
+                    <p class="history-subtitle">Toàn bộ giao dịch nạp tiền và mua gói của bạn</p>
+                </div>
+
+                <div class="history-grid" id="historyGrid"></div>
+
+                <div class="history-controls">
+                    <button class="history-btn" id="historyExpandBtn" onclick="historyExpand()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        Xem thêm giao dịch
+                    </button>
+                    <button class="history-btn close-btn" id="historyCollapseBtn" onclick="historyCollapse()" style="display:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                        Thu gọn
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // CẤU HÌNH API
+        // ═══════════════════════════════════════════════════════════════
+        const API_BASE = 'https://locketgold.trannhatphuc1234xx.workers.dev';
+        // Hoặc để trống nếu cùng domain: const API_BASE = '';
+
+        // ═══════════════════════════════════════════════════════════════
+        // STATE
+        // ═══════════════════════════════════════════════════════════════
+        let userTransactionHistory = [];
+        let historyDisplayedCount = 9;
+        const HISTORY_INITIAL_COUNT = 9;
+        const HISTORY_STEP_COUNT = 6;
+        let totalTransactions = 0;
+        let isLoading = false;
+
+        // ═══════════════════════════════════════════════════════════════
+        // CONFIG UI
+        // ═══════════════════════════════════════════════════════════════
+        const transactionConfig = {
+            deposit: {
+                label: 'NẠP TIỀN',
+                bg: 'rgba(74,222,128,0.12)',
+                text: '#16a34a',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>'
+            },
+            purchase: {
+                label: 'MUA GÓI',
+                bg: 'rgba(167,139,250,0.12)',
+                text: '#7c3aed',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>'
+            },
+            refund: {
+                label: 'HOÀN TIỀN',
+                bg: 'rgba(251,146,60,0.12)',
+                text: '#ea580c',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"></path><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>'
+            },
+            bonus: {
+                label: 'THƯỞNG',
+                bg: 'rgba(251,191,36,0.12)',
+                text: '#f59e0b',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line></svg>'
+            }
+        };
+
+        // ═══════════════════════════════════════════════════════════════
+        // AUTH
+        // ═══════════════════════════════════════════════════════════════
+        function getCurrentUser() {
+            try {
+                const stored = sessionStorage.getItem('locket_user');
+                if (stored) return JSON.parse(stored);
+            } catch (e) {
+                console.error(e);
+            }
+            return null;
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // FETCH API
+        // ═══════════════════════════════════════════════════════════════
+        async function fetchTransactionHistory() {
+            const user = getCurrentUser();
+            if (!user || !user.email) {
+                renderError('Vui lòng đăng nhập để xem lịch sử giao dịch');
+                return;
+            }
+
+            if (isLoading) return;
+            isLoading = true;
+            showLoading();
+
+            try {
+                const res = await fetch(
+                    `${API_BASE}/api/transaction-history?email=${encodeURIComponent(user.email)}&limit=100`, {
+                        credentials: 'omit',
+                        cache: 'no-store'
+                    }
+                );
+
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+
+                const data = await res.json();
+
+                if (data.success && Array.isArray(data.transactions)) {
+                    userTransactionHistory = data.transactions;
+                    totalTransactions = data.total || data.transactions.length;
+                    renderHistory();
+                } else {
+                    renderError(data.message || 'Không thể tải lịch sử giao dịch');
+                }
+            } catch (err) {
+                console.error('Fetch error:', err);
+                renderError('Lỗi kết nối. Vui lòng thử lại sau.');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // RENDER
+        // ═══════════════════════════════════════════════════════════════
+        function showLoading() {
+            const grid = document.getElementById('historyGrid');
+            if (!grid) return;
+            grid.innerHTML = `
+                <div style="grid-column:1/-1; text-align:center; padding:60px 20px;">
+                    <div class="loading-spinner"></div>
+                    <p style="margin-top:16px; color:#9ca3af; font-weight:500;">Đang tải lịch sử giao dịch...</p>
+                </div>
+            `;
+            const eBtn = document.getElementById('historyExpandBtn');
+            const cBtn = document.getElementById('historyCollapseBtn');
+            if (eBtn) eBtn.style.display = 'none';
+            if (cBtn) cBtn.style.display = 'none';
+        }
+
+        function renderError(message) {
+            const grid = document.getElementById('historyGrid');
+            if (!grid) return;
+            grid.innerHTML = `
+                <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#9ca3af;">
+                    <div style="font-size:48px; margin-bottom:12px;">⚠️</div>
+                    <p style="font-size:16px; font-weight:600;">${escapeHtml(message)}</p>
+                </div>
+            `;
+            const eBtn = document.getElementById('historyExpandBtn');
+            const cBtn = document.getElementById('historyCollapseBtn');
+            if (eBtn) eBtn.style.display = 'none';
+            if (cBtn) cBtn.style.display = 'none';
+        }
+
+        function renderHistory() {
+            const grid = document.getElementById('historyGrid');
+            if (!grid) return;
+
+            const display = userTransactionHistory.slice(0, historyDisplayedCount);
+            const total = userTransactionHistory.length;
+
+            if (display.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:#9ca3af;">
+                        <div style="font-size:48px; margin-bottom:12px;">📭</div>
+                        <p style="font-size:16px; font-weight:600;">Chưa có giao dịch nào</p>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = display.map(item => {
+                    const config = transactionConfig[item.type] || transactionConfig.deposit;
+
+                    let discountBadge = '';
+                    if (item.discount) {
+                        discountBadge = `<span class="history-badge-discount"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Giảm ${escapeHtml(item.discount)}</span>`;
+                    }
+
+                    const amountClass = item.amount > 0 ? 'plus' : 'minus';
+                    const amountPrefix = item.amount > 0 ? '+' : '';
+
+                    let statusText = '';
+                    let statusClass = '';
+                    if (item.status === 'success') {
+                        statusText = 'Thành công';
+                        statusClass = 'success';
+                    } else if (item.status === 'pending') {
+                        statusText = 'Đang xử lý';
+                        statusClass = 'pending';
+                    } else {
+                        statusText = 'Thất bại';
+                        statusClass = 'failed';
+                    }
+
+                    return `
+                        <div class="history-item">
+                            <div class="history-icon" style="background:${config.bg}; color:${config.text};">
+                                ${config.icon}
+                            </div>
+                            <div class="history-meta">
+                                <div class="history-row1">
+                                    <span class="history-name">${escapeHtml(item.name)}</span>
+                                    <span class="history-badge-role" style="background:${config.bg}; color:${config.text};">${config.label}</span>
+                                    ${discountBadge}
+                                </div>
+                                <div class="history-time">${escapeHtml(item.time)} · Mã: ${escapeHtml(item.id)}</div>
+                            </div>
+                            <div class="history-right">
+                                <div class="history-amount ${amountClass}">${amountPrefix}${item.amount.toLocaleString('vi-VN')}đ</div>
+                                <div class="history-status ${statusClass}">${statusText}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const eBtn = document.getElementById('historyExpandBtn');
+            const cBtn = document.getElementById('historyCollapseBtn');
+            const isExpanded = historyDisplayedCount > HISTORY_INITIAL_COUNT;
+
+            if (eBtn && cBtn) {
+                if (historyDisplayedCount >= total || total <= HISTORY_INITIAL_COUNT) {
+                    eBtn.style.display = 'none';
+                } else {
+                    eBtn.style.display = '';
+                }
+                cBtn.style.display = isExpanded ? '' : 'none';
+            }
+        }
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function historyExpand() {
+            historyDisplayedCount = Math.min(historyDisplayedCount + HISTORY_STEP_COUNT, userTransactionHistory.length);
+            renderHistory();
+            document.getElementById('historyGrid').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function historyCollapse() {
+            historyDisplayedCount = HISTORY_INITIAL_COUNT;
+            renderHistory();
+            document.getElementById('historyGrid').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // THEME
+        // ═══════════════════════════════════════════════════════════════
+        const themeBtn = document.getElementById('theme-icon');
+
+        function updateThemeIcon(mode) {
+            if (!themeBtn) return;
+            if (mode === 'light') themeBtn.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+            else themeBtn.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+
+        function toggleTheme() {
+            const isLight = document.body.getAttribute('data-mode') === 'light';
+            if (isLight) {
+                document.body.removeAttribute('data-mode');
+                localStorage.setItem('locket_theme', 'dark');
+                updateThemeIcon('dark');
+            } else {
+                document.body.setAttribute('data-mode', 'light');
+                localStorage.setItem('locket_theme', 'light');
+                updateThemeIcon('light');
+            }
+        }
+        if (localStorage.getItem('locket_theme') === 'dark') updateThemeIcon('dark');
+        else updateThemeIcon('light');
+
+        // ═══════════════════════════════════════════════════════════════
+        // AUTH CHECK + INIT
+        // ═══════════════════════════════════════════════════════════════
+        (function checkUserAuth() {
+            const user = getCurrentUser();
+            const loginBtn = document.getElementById('navLoginBtn');
+            const userMenu = document.getElementById('navUserMenu');
+
+            if (user) {
+                const displayName = user.name || (user.email ? user.email.split('@')[0] : 'User');
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (userMenu) userMenu.classList.add('active');
+
+                const avatar = user.picture || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(displayName) + '&background=7c3aed&color=fff&size=100';
+                const navAvatar = document.getElementById('navUserAvatar');
+                const navName = document.getElementById('navUserName');
+                const menuName = document.getElementById('navMenuName');
+                if (navAvatar) navAvatar.src = avatar;
+                if (navName) navName.textContent = displayName;
+                if (menuName) menuName.textContent = displayName;
+
+                // Load balance
+                loadBalance(user.email);
+            } else {
+                if (loginBtn) loginBtn.style.display = '';
+                if (userMenu) userMenu.classList.remove('active');
+            }
+        })();
+
+        async function loadBalance(email) {
+            try {
+                const res = await fetch(`${API_BASE}/api/balance?email=${encodeURIComponent(email)}`);
+                const data = await res.json();
+                if (data.success) {
+                    const el = document.getElementById('navMenuBalance');
+                    if (el) el.textContent = (data.balance || 0).toLocaleString('vi-VN') + 'đ';
+                }
+            } catch (e) {
+                console.error('Load balance error:', e);
+            }
+        }
+
+        function toggleUserMenu(e) {
+            e.stopPropagation();
+            const wrap = document.getElementById('navUserMenu');
+            if (!wrap) return;
+            const isOpen = wrap.classList.toggle('open');
+            const btn = wrap.querySelector('.user-menu-btn');
+            if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+        document.addEventListener('click', function(e) {
+            const wrap = document.getElementById('navUserMenu');
+            if (wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
+        });
+
+        function handleUserLogout() {
+            if (!confirm('Bạn có chắc muốn đăng xuất?')) return;
+            sessionStorage.removeItem('locket_user');
+            sessionStorage.removeItem('locket_order');
+            window.location.reload();
+        }
+
+        // ═══════════════════════════════════════════════════════════════
+        // KHỞI TẠO
+        // ═══════════════════════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            // Đợi auth check xong mới fetch
+            setTimeout(fetchTransactionHistory, 200);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vòng Quay May Mắn - Locket Gold</title>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0d18;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            color: #fff;
+        }
+        /* ===== BACKGROUND GLOW ===== */
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(167, 139, 250, 0.15), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(244, 114, 182, 0.12), transparent 50%), radial-gradient(ellipse at 50% 20%, rgba(52, 211, 153, 0.08), transparent 50%);
+            z-index: 0;
+            animation: bgFloat 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes bgFloat {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(-5%, 5%) rotate(5deg);
+            }
+        }
+        /* ===== CONTAINER ===== */
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 32px;
+            padding: 30px 24px 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+        /* ===== HEADER ===== */
+        
+        .header {
+            margin-bottom: 24px;
+        }
+        
+        .header .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+            margin-bottom: 12px;
+        }
+        
+        .header .back-btn:hover {
+            color: #a78bfa;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a78bfa, #f472b6, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        /* ===== TICKET / SPIN COUNT ===== */
+        
+        .ticket-box {
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+        
+        .ticket-box .label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .ticket-box .count {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .ticket-box .count span {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .ticket-box .get-ticket-btn {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ticket-box .get-ticket-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.4);
+        }
+        /* ===== WHEEL ===== */
+        
+        .wheel-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 30px;
+            aspect-ratio: 1/1;
+        }
+        
+        .wheel-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(167, 139, 250, 0.15), 0 0 120px rgba(167, 139, 250, 0.05);
+            transition: filter 0.3s;
+            cursor: pointer;
+            touch-action: none;
+        }
+        
+        .wheel-wrapper canvas:hover {
+            filter: brightness(1.05);
+        }
+        /* ===== POINTER ===== */
+        
+        .pointer {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 32px solid #fbbf24;
+            filter: drop-shadow(0 4px 12px rgba(251, 191, 36, 0.6));
+        }
+        
+        .pointer::after {
+            content: '';
+            position: absolute;
+            top: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: #fbbf24;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+        /* ===== SPIN BUTTON ===== */
+        
+        .spin-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        
+        .spin-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(30deg) translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: rotate(30deg) translateX(-100%);
+            }
+            100% {
+                transform: rotate(30deg) translateX(100%);
+            }
+        }
+        
+        .spin-btn:hover:not(:disabled) {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(167, 139, 250, 0.5);
+        }
+        
+        .spin-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+        
+        .spin-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        /* ===== RESULT ===== */
+        
+        .result-box {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.5s ease;
+        }
+        
+        .result-box.win {
+            border-color: rgba(251, 191, 36, 0.3);
+            background: rgba(251, 191, 36, 0.05);
+            color: #fbbf24;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .result-box .emoji {
+            font-size: 32px;
+            margin-right: 10px;
+        }
+        /* ===== TASK / GET TICKET ===== */
+        
+        .task-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .task-section h3 {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+        
+        .task-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        .task-item .task-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .task-item .task-info .icon {
+            font-size: 18px;
+        }
+        
+        .task-item .task-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(167, 139, 250, 0.15);
+            color: #a78bfa;
+        }
+        
+        .task-item .task-btn:hover:not(:disabled) {
+            background: rgba(167, 139, 250, 0.25);
+        }
+        
+        .task-item .task-btn.done {
+            background: rgba(52, 211, 153, 0.12);
+            color: #34d399;
+            cursor: default;
+        }
+        
+        .task-item .task-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        /* ===== MODAL ===== */
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalFade 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-box {
+            background: #1a1a2e;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 32px 28px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .modal-box .big-emoji {
+            font-size: 64px;
+            margin-bottom: 12px;
+        }
+        
+        .modal-box h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .modal-box p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .modal-box .modal-btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #a78bfa, #7c3aed);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
+        }
+        
+        .modal-box .modal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(167, 139, 250, 0.5);
+        }
+        /* ===== RESPONSIVE ===== */
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 16px 30px;
+                border-radius: 20px;
+            }
+            .header h1 {
+                font-size: 22px;
+            }
+            .ticket-box {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+                padding: 12px 16px;
+            }
+            .ticket-box .count {
+                font-size: 20px;
+            }
+            .spin-btn {
+                font-size: 16px;
+                padding: 14px;
+            }
+            .result-box {
+                font-size: 14px;
+                min-height: 50px;
+                padding: 12px;
+            }
+            .result-box.win {
+                font-size: 17px;
+            }
+            .task-item {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .modal-box {
+                padding: 24px 20px;
+            }
+            .modal-box .big-emoji {
+                font-size: 48px;
+            }
+            .pointer {
+                top: -12px;
+                border-left-width: 14px;
+                border-right-width: 14px;
+                border-top-width: 26px;
+            }
+            .pointer::after {
+                top: -32px;
+                width: 12px;
+                height: 12px;
+            }
+        }
+        /* ===== SPARKLE ANIMATION ===== */
+        
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 24px;
+            animation: sparkleFloat 1.2s ease-out forwards;
+            z-index: 9998;
+        }
+        
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-120px) scale(0.3) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== CONTAINER ===== -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <a href="/trangchu.html" class="back-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Quay lại
+            </a>
+            <h1>🎡 Vòng Quay May Mắn</h1>
+            <p>Quay mỗi ngày để nhận quà cực chất!</p>
+        </div>
+
+        <!-- Ticket Count -->
+        <div class="ticket-box">
+            <div>
+                <div class="label">🎫 Lượt quay</div>
+                <div class="count" id="spinCount">0 <span>lượt</span></div>
+            </div>
+            <button class="get-ticket-btn" onclick="getFreeTicket()">+ Nhận lượt</button>
+        </div>
+
+        <!-- Wheel -->
+        <div class="wheel-wrapper">
+            <canvas id="wheelCanvas" width="600" height="600"></canvas>
+            <div class="pointer"></div>
+        </div>
+
+        <!-- Spin Button -->
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎰 QUAY NGAY</button>
+
+        <!-- Result -->
+        <div class="result-box" id="resultBox">👆 Nhấn nút để quay thử vận may!</div>
+
+        <!-- Tasks -->
+        <div class="task-section">
+            <h3>📋 Làm nhiệm vụ nhận lượt quay</h3>
+
+            <div class="task-item">
+                <div class="task-info">
+                    <span class="icon">📱</span>
+                    <span>Chia sẻ lên Facebook</span>
+                </div>
+                <button class="task-btn" onclick="doTask('facebook')" id="taskFacebook">+1 lượt</button>
+            </div>
+
+            <div class="task-item">
+                <div class="task-info">
+                    <span class="icon">📢</span>
+                    <span>Chia sẻ lên TikTok</span>
+                </div>
+                <button class="task-btn" onclick="doTask('tiktok')" id="taskTiktok">+1 lượt</button>
+            </div>
+
+            <div class="task-item">
+                <div class="task-info">
+                    <span class="icon">💬</span>
+                    <span>Vào group Zalo</span>
+                </div>
+                <button class="task-btn" onclick="doTask('zalo')" id="taskZalo">+1 lượt</button>
+            </div>
+
+            <div class="task-item">
+                <div class="task-info">
+                    <span class="icon">⭐</span>
+                    <span>Đánh giá 5⭐ trên Google</span>
+                </div>
+                <button class="task-btn" onclick="doTask('google')" id="taskGoogle">+2 lượt</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-box">
+            <div class="big-emoji" id="modalEmoji">🎉</div>
+            <h2 id="modalTitle">Chúc mừng bạn!</h2>
+            <p id="modalDesc">Bạn đã trúng giải thưởng hấp dẫn</p>
+            <button class="modal-btn" onclick="closeModal()">Tuyệt vời!</button>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // ===== CONFIG =====
+        const SEGMENTS = [{
+            label: '💰 10K',
+            color: '#f472b6',
+            emoji: '💰',
+            prize: '10,000đ'
+        }, {
+            label: '🎁 Free VIP',
+            color: '#a78bfa',
+            emoji: '🎁',
+            prize: 'VIP 1 Miễn Phí'
+        }, {
+            label: '💎 50K',
+            color: '#fbbf24',
+            emoji: '💎',
+            prize: '50,000đ'
+        }, {
+            label: '🔄 5K',
+            color: '#34d399',
+            emoji: '🔄',
+            prize: '5,000đ'
+        }, {
+            label: '🌟 Canva Edu',
+            color: '#60a5fa',
+            emoji: '🌟',
+            prize: 'Canva Edu 3 Năm'
+        }, {
+            label: '😅 Rất tiếc',
+            color: '#ef4444',
+            emoji: '😅',
+            prize: 'Chúc may mắn lần sau!'
+        }, {
+            label: '🎰 20K',
+            color: '#fb923c',
+            emoji: '🎰',
+            prize: '20,000đ'
+        }, {
+            label: '✨ Free Gold',
+            color: '#f472b6',
+            emoji: '✨',
+            prize: 'Gói Gold 1T'
+        }, ];
+
+        const SEG_COUNT = SEGMENTS.length;
+        const ANGLE_PER_SEG = (2 * Math.PI) / SEG_COUNT;
+
+        // ===== STATE =====
+        let spinCount = 0;
+        let isSpinning = false;
+        let currentAngle = 0;
+
+        // ===== DOM =====
+        const canvas = document.getElementById('wheelCanvas');
+        const ctx = canvas.getContext('2d');
+        const spinBtn = document.getElementById('spinBtn');
+        const resultBox = document.getElementById('resultBox');
+        const spinCountEl = document.getElementById('spinCount');
+
+        // ===== DRAW WHEEL =====
+        function drawWheel(rotation = 0) {
+            const cx = 300,
+                cy = 300,
+                r = 280;
+            ctx.clearRect(0, 0, 600, 600);
+
+            // Shadow
+            ctx.shadowColor = 'rgba(167, 139, 250, 0.15)';
+            ctx.shadowBlur = 40;
+
+            for (let i = 0; i < SEG_COUNT; i++) {
+                const start = i * ANGLE_PER_SEG + rotation;
+                const end = start + ANGLE_PER_SEG;
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.arc(cx, cy, r, start, end);
+                ctx.closePath();
+
+                ctx.fillStyle = SEGMENTS[i].color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.shadowBlur = 40;
+
+                // Text
+                const mid = start + ANGLE_PER_SEG / 2;
+                const textR = r * 0.68;
+                const x = cx + Math.cos(mid) * textR;
+                const y = cy + Math.sin(mid) * textR;
+
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(mid + Math.PI / 2);
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 20px "Segoe UI", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                ctx.shadowBlur = 8;
+                ctx.fillText(SEGMENTS[i].label, 0, 0);
+                ctx.restore();
+            }
+
+            // Center circle
+            ctx.shadowBlur = 0;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 40, 0, 2 * Math.PI);
+            ctx.fillStyle = 'rgba(13, 13, 24, 0.9)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Center text
+            ctx.fillStyle = '#fbbf24';
+            ctx.font = 'bold 22px "Segoe UI", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(251, 191, 36, 0.3)';
+            ctx.shadowBlur = 12;
+            ctx.fillText('SPIN', cx, cy);
+            ctx.shadowBlur = 0;
+        }
+
+        // ===== GET WINNING SEGMENT =====
+        function getWinningSegment(rotation) {
+            // Normalize rotation
+            const norm = rotation % (2 * Math.PI);
+            // The pointer is at top (270° or -π/2)
+            // Find segment that contains -π/2
+            const pointerAngle = -Math.PI / 2;
+            let angle = (pointerAngle - norm) % (2 * Math.PI);
+            if (angle < 0) angle += 2 * Math.PI;
+            const idx = Math.floor(angle / ANGLE_PER_SEG);
+            return idx % SEG_COUNT;
+        }
+
+        // ===== SPIN =====
+        function spinWheel() {
+            if (isSpinning) return;
+            if (spinCount <= 0) {
+                resultBox.className = 'result-box';
+                resultBox.innerHTML = '😅 Bạn không còn lượt quay! Hãy nhận thêm lượt miễn phí.';
+                showModal('😅', 'Hết lượt quay!', 'Bạn không còn lượt quay. Hãy làm nhiệm vụ để nhận thêm lượt miễn phí nhé!');
+                return;
+            }
+
+            isSpinning = true;
+            spinBtn.disabled = true;
+            spinBtn.textContent = '⏳ Đang quay...';
+            resultBox.className = 'result-box';
+            resultBox.innerHTML = '🔄 Đang quay...';
+
+            // Random spin: 5-8 full rotations + random angle
+            const spins = 5 + Math.random() * 3;
+            const extraAngle = Math.random() * 2 * Math.PI;
+            const totalAngle = spins * 2 * Math.PI + extraAngle;
+            const targetAngle = currentAngle + totalAngle;
+
+            const startAngle = currentAngle;
+            const duration = 4000 + Math.random() * 1000;
+            const startTime = performance.now();
+
+            function animateSpin(time) {
+                const elapsed = time - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const angle = startAngle + totalAngle * eased;
+
+                drawWheel(angle);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateSpin);
+                } else {
+                    currentAngle = targetAngle;
+                    const winIdx = getWinningSegment(targetAngle);
+                    const prize = SEGMENTS[winIdx];
+                    isSpinning = false;
+                    spinBtn.disabled = false;
+                    spinBtn.textContent = '🎰 QUAY NGAY';
+                    spinCount--;
+                    updateSpinCount();
+
+                    // Show result
+                    resultBox.className = 'result-box win';
+                    resultBox.innerHTML = `<span class="emoji">${prize.emoji}</span> ${prize.prize}`;
+
+                    // Show modal
+                    const isWin = winIdx !== 5; // index 5 is "Rất tiếc"
+                    if (isWin) {
+                        showModal(
+                            prize.emoji,
+                            `🎉 Chúc mừng! Bạn trúng ${prize.prize}`,
+                            `Phần thưởng sẽ được cộng vào tài khoản của bạn. Liên hệ Admin để nhận ngay!`
+                        );
+                        spawnSparkles();
+                    } else {
+                        showModal(
+                            '😅',
+                            'Chưa trúng thưởng!',
+                            'Đừng nản nhé, hãy quay lại vào ngày mai để có cơ hội mới!'
+                        );
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateSpin);
+        }
+
+        // ===== UPDATE SPIN COUNT =====
+        function updateSpinCount() {
+            spinCountEl.textContent = spinCount;
+            localStorage.setItem('locket_spin_count', spinCount);
+        }
+
+        // ===== GET FREE TICKET =====
+        function getFreeTicket() {
+            // Check if user already claimed today
+            const lastClaim = localStorage.getItem('locket_spin_last_claim');
+            const today = new Date().toDateString();
+            if (lastClaim === today) {
+                showModal('⏰', 'Đã nhận hôm nay!', 'Bạn đã nhận lượt quay miễn phí hôm nay. Hãy quay lại vào ngày mai nhé!');
+                return;
+            }
+
+            spinCount += 1;
+            updateSpinCount();
+            localStorage.setItem('locket_spin_last_claim', today);
+            showModal('🎫', 'Nhận thành công!', 'Bạn đã nhận được 1 lượt quay miễn phí. Quay ngay nào!');
+
+            // Animation
+            const btn = document.querySelector('.get-ticket-btn');
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => btn.style.transform = '', 200);
+        }
+
+        // ===== DO TASK =====
+        function doTask(task) {
+            const key = `locket_task_${task}`;
+            const lastDone = localStorage.getItem(key);
+            const today = new Date().toDateString();
+
+            if (lastDone === today) {
+                showModal('⏰', 'Đã làm rồi!', 'Bạn đã hoàn thành nhiệm vụ này hôm nay. Hãy thử nhiệm vụ khác nhé!');
+                return;
+            }
+
+            let reward = 1;
+            if (task === 'google') reward = 2;
+
+            // Mark as done
+            localStorage.setItem(key, today);
+            spinCount += reward;
+            updateSpinCount();
+
+            // Update button
+            const btn = document.getElementById(`task${task.charAt(0).toUpperCase() + task.slice(1)}`);
+            if (btn) {
+                btn.textContent = '✅ Đã xong';
+                btn.className = 'task-btn done';
+                btn.disabled = true;
+            }
+
+            showModal(
+                '🎫',
+                `+${reward} lượt quay!`,
+                `Bạn đã hoàn thành nhiệm vụ và nhận được ${reward} lượt quay. Tiếp tục làm nhiệm vụ khác nhé!`
+            );
+        }
+
+        // ===== MODAL =====
+        function showModal(emoji, title, desc) {
+            document.getElementById('modalEmoji').textContent = emoji;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('resultModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').classList.remove('show');
+        }
+
+        // Click outside to close
+        document.getElementById('resultModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ===== SPARKLES =====
+        function spawnSparkles() {
+            const emojis = ['✨', '🌟', '⭐', '🎉', '🎊', '💫', '🌈'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.className = 'sparkle';
+                    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    el.style.left = (10 + Math.random() * 80) + 'vw';
+                    el.style.top = (10 + Math.random() * 80) + 'vh';
+                    el.style.fontSize = (16 + Math.random() * 24) + 'px';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 1400);
+                }, i * 80);
+            }
+        }
+
+        // ===== LOAD SAVED STATE =====
+        function loadState() {
+            const saved = localStorage.getItem('locket_spin_count');
+            spinCount = saved ? parseInt(saved) : 3; // Start with 3 free spins
+            updateSpinCount();
+
+            // Check tasks
+            const tasks = ['facebook', 'tiktok', 'zalo', 'google'];
+            const today = new Date().toDateString();
+            tasks.forEach(task => {
+                const key = `locket_task_${task}`;
+                const done = localStorage.getItem(key);
+                if (done === today) {
+                    const btn = document.getElementById(`task${task.charAt(0).toUpperCase() + task.slice(1)}`);
+                    if (btn) {
+                        btn.textContent = '✅ Đã xong';
+                        btn.className = 'task-btn done';
+                        btn.disabled = true;
+                    }
+                }
+            });
+        }
+
+        // ===== TOUCH SUPPORT =====
+        // Prevent double-tap zoom on wheel
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+        });
+
+        // ===== INIT =====
+        drawWheel();
+        loadState();
+
+        // Auto-resize canvas for mobile
+        function resizeCanvas() {
+            const wrapper = document.querySelector('.wheel-wrapper');
+            const size = wrapper.clientWidth;
+            if (size > 0 && size < 600) {
+                canvas.style.width = size + 'px';
+                canvas.style.height = size + 'px';
+            }
+        }
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 100);
+
+        console.log('🎡 Vòng Quay May Mắn đã sẵn sàng!');
+        console.log('💡 Lưu ý: Đây là phiên bản demo. Hãy kết nối với backend để xác thực người dùng và lưu giải thưởng.');
+    </script>
+
+</body>
+
+</html>
